@@ -1,0 +1,27 @@
+<div>
+    <div>
+        <h1>Registro de Calificaciones</h1>
+    </div>
+    <div>
+        <form [formGroup]="form" (submit)="aceptar()">
+            <mat-form-field  *ngIf="edicion">
+                <mat-label>ID</mat-label>
+                <input matInput formControlName="codigo" />
+                <mat-error *ngIf="form.get('codigo')?.hasError('required')">
+                    El codigo es Obligatorio para actualizar!!
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Calificacion</mat-label>
+                <input matInput formControlName="calificacion1" />
+                <mat-error *ngIf="form.get('calificacion1')?.hasError('required')">
+                    El numero de la Calificacion es Obligatorio!!
+                </mat-error>
+            </mat-form-field>
+            <br>
+
+            <button matButton="filled">Registrar Calificacion</button>
+        </form>
+    </div>
+</div>
