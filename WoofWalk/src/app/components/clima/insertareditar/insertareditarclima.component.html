@@ -1,0 +1,43 @@
+<div>
+    <div>
+        <h1>Registro de Climas</h1>
+    </div>
+    <div>
+        <form [formGroup]="form" (submit)="aceptar()">
+            <mat-form-field *ngIf="edicion">
+                <mat-label>ID</mat-label>
+                <input matInput formControlName="codigo" />
+                <mat-error *ngIf="form.get('codigo')?.hasError('required')">
+                    El Id es Obligatorio para actualizar!!
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Temperatura</mat-label>
+                <input matInput formControlName="temperatura1" />
+                <mat-error *ngIf="form.get('temperatura1')?.hasError('required')">
+                    La temperatura es Obligatoria!!
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Humedad</mat-label>
+                <input matInput formControlName="humedad1" />
+                <mat-error *ngIf="form.get('humedad1')?.hasError('required')">
+                    La Humedad es Obligatoria!!
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Condicion</mat-label>
+                <input matInput formControlName="condicion1" />
+                <mat-error *ngIf="form.get('condicion1')?.hasError('required')">
+                    La Condicion es Obligatoria!!
+                </mat-error>
+            </mat-form-field>
+            <br>
+
+            <button matButton="filled">Registrar Clima</button>
+        </form>
+    </div>
+</div>

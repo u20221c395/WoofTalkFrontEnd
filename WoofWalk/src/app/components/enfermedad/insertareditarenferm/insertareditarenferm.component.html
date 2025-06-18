@@ -1,0 +1,35 @@
+<div>
+    <div>
+        <h1>Registro de Enfermedad</h1>
+    </div>
+    <div>
+        <form [formGroup]="form" (submit)="aceptar()">
+            <mat-form-field *ngIf="edicion">
+                <mat-label>ID</mat-label>
+                <input matInput formControlName="codigo" />
+                <mat-error *ngIf="form.get('codigo')?.hasError('required')">
+                    El Id es Obligatorio para actualizar!!
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Nombre</mat-label>
+                <input matInput formControlName="nombre1" />
+                <mat-error *ngIf="form.get('nombre1')?.hasError('required')">
+                    El Nombre es Obligatorio!!
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Descripcion</mat-label>
+                <input matInput formControlName="descripcion1" />
+                <mat-error *ngIf="form.get('descripcion1')?.hasError('required')">
+                    La Descripcion es Obligatoria!!
+                </mat-error>
+            </mat-form-field>
+            <br>
+
+            <button matButton="filled">Registrar Enfermedad</button>
+        </form>
+    </div>
+</div>
