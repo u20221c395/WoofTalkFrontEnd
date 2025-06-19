@@ -10,19 +10,30 @@ const base_url = environment.base
   providedIn: 'root'
 })
 export class RolService {
-     private url = `${base_url}/metododepagos`
+     private url = `${base_url}/roles`
       private listaCambio = new Subject<Rol[]>
 
   constructor(private http:HttpClient) { }
 
-  list (){
-        return this.http.get<[Rol]>(this.url + '/listar')
+  list(): Promise<Rol[]> {
+      return new Promise((resolve, reject) => {
+        this.http.get<Rol[]>(this.url + '/listar').subscribe({
+          next: (data) => {
+            this.listaCambio.next(data); // Emite la nueva lista a través del Subject
+            resolve(data); // Resuelve la Promesa con los datos
+          },
+          error: (err) => { // Captura el error y rechaza la Promesa
+            console.error('Error al listar roles:', err);
+            reject(err);
+          }
+        });
+      });
       }
     
-      insert(c: Rol){
-        return this.http.post(this.url + '/registrar', c)
-      }
-    
+      insert(rol: Rol) { // Cambiado 'c' a 'rol' para claridad
+    // CORRECCIÓN CLAVE: Cambiado '/registrar' a '/agregar' para coincidir con el backend
+    return this.http.post(this.url + '/agregar', rol);
+  }
       setList(listaNueva: Rol[]){
         this.listaCambio.next(listaNueva)
       }
@@ -31,8 +42,18 @@ export class RolService {
         return this.listaCambio.asObservable()
       }
     
-      listId(id: number){
-        return this.http.get<Rol>(`${this.url + '/buscarporid'}/${id}`)
+     listId(id: number): Promise<Rol> { 
+         return new Promise((resolve, reject) => {
+              this.http.get<Rol>(`${this.url}/buscarporid/${id}`).subscribe({ // Interpolación de string para la URL
+                next: (data) => {
+                  resolve(data); // Resuelve la Promesa con los datos
+                },
+                error: (err) => { // Captura el error y rechaza la Promesa
+                  console.error(`Error al buscar roles con ID ${id}:`, err);
+                  reject(err);
+                }
+              });
+            });
       }
     
       update(ca: Rol){

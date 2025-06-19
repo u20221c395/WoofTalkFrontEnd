@@ -1,41 +1,48 @@
 <div>
     <div>
-        <h1>Registro de Enfermedad</h1>
+        <h1>Registro de Metodos de Pago</h1>
     </div>
     <div>
         <form [formGroup]="form" (submit)="aceptar()">
-
-
-           <mat-form-field *ngIf="edicion">
+            <mat-form-field  *ngIf="edicion">
                 <mat-label>ID</mat-label>
-                <!-- CORRECCIÓN: Eliminado [readonly]="true".
-                     El campo se mostrará en edición y el valor será visible. -->
                 <input matInput formControlName="codigo" />
                 <mat-error *ngIf="form.get('codigo')?.hasError('required')">
-                    El Id es Obligatorio para actualizar!!
+                    El codigo es Obligatorio para actualizar!!
                 </mat-error>
             </mat-form-field>
-
-            
             <br>
             <mat-form-field>
                 <mat-label>Nombre</mat-label>
                 <input matInput formControlName="nombre" />
                 <mat-error *ngIf="form.get('nombre')?.hasError('required')">
-                    El Nombre es Obligatorio!!
+                    El nombre del metodo de pago que desea es Obligatorio!!
                 </mat-error>
             </mat-form-field>
+            <br>
+
             <br>
             <mat-form-field>
                 <mat-label>Descripcion</mat-label>
                 <input matInput formControlName="descripcion" />
                 <mat-error *ngIf="form.get('descripcion')?.hasError('required')">
-                    La Descripcion es Obligatoria!!
+                    La Descripcion es Obligatorio!!
                 </mat-error>
             </mat-form-field>
             <br>
 
-            <button matButton="filled">Registrar Enfermedad</button>
+            <br>
+            <mat-form-field>
+                <mat-label>Estado</mat-label>
+                <input matInput formControlName="estado" />
+                <mat-error *ngIf="form.get('estado')?.hasError('required')">
+                    El Estado es Obligatorio!!
+                </mat-error>
+            </mat-form-field>
+            <br>
+
+
+            <button matButton="filled">Registrar Metodo de Pago</button>
         </form>
     </div>
 </div>
