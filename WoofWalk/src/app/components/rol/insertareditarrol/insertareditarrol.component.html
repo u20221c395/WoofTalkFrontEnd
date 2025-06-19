@@ -1,0 +1,29 @@
+<div>
+    <div>
+        <h1>Registro de Roles</h1>
+    </div>
+    <div>
+        <form [formGroup]="form" (submit)="aceptar()">
+            <mat-form-field>
+                <mat-label>ID</mat-label>
+                <input matInput formControlName="codigo" />
+                <mat-error *ngIf="form.get('codigo')?.hasError('required')">
+                    El código es Obligatorio para actualizar!!
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Nombre del Rol</mat-label>
+                <!-- CORRECCIÓN: El formControlName en el TS es 'rol', no 'nombre'. Cambiado aquí también. -->
+                <input matInput formControlName="rol" />
+                <mat-error *ngIf="form.get('rol')?.hasError('required')">
+                    El nombre del rol es Obligatorio!!
+                </mat-error>
+            </mat-form-field>
+            <br>
+
+            <button mat-raised-button color="primary">Registrar Rol</button>
+            <!-- CORRECCIÓN: Texto del botón a "Registrar Rol" y estilo a mat-raised-button color="primary" -->
+        </form>
+    </div>
+</div>
