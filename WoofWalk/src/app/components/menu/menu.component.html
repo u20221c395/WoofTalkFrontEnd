@@ -1,0 +1,64 @@
+<mat-toolbar class="custom-toolbar">  
+
+ <div>
+  <button mat-button [matMenuTriggerFor]="menuCalificaciones" class="btn-rojo">
+   <mat-icon>computer</mat-icon>
+   Calificaciones
+  </button>
+ </div>
+
+ 
+ <div>
+  <button mat-button [matMenuTriggerFor]="menuEnfermedades" class="btn-rojo">
+   <mat-icon>computer</mat-icon>
+   Enfermedades
+  </button>
+ </div>
+
+<div>
+  <button mat-button [matMenuTriggerFor]="menuClima" class="btn-rojo">
+   <mat-icon>computer</mat-icon>
+   Clima
+  </button>
+ </div>
+
+ <div>
+  <button mat-button [matMenuTriggerFor]="menuMetodoDePago" class="btn-rojo">
+   <mat-icon>computer</mat-icon>
+   Metodos De Pago
+  </button>
+ </div>
+
+ <div>
+  <button mat-button [matMenuTriggerFor]="menuRol" class="btn-rojo">
+   <mat-icon>computer</mat-icon>
+   Roles
+  </button>
+ </div>
+
+</mat-toolbar>
+
+<mat-menu #menuCalificaciones="matMenu">
+ <button mat-menu-item routerLink="/calificaciones">Listar</button>
+ <button mat-menu-item routerLink="/calificaciones/nuevo">Registrar</button>
+</mat-menu>
+
+<mat-menu #menuEnfermedades="matMenu">
+ <button mat-menu-item routerLink="/enfermedades">Listar</button> 
+ <button mat-menu-item routerLink="/enfermedades/nuevo">Registrar</button>
+</mat-menu>
+
+<mat-menu #menuClima="matMenu">
+ <button mat-menu-item routerLink="/climas">Listar</button> 
+ <button mat-menu-item routerLink="/climas/nuevo">Registrar</button>
+</mat-menu>
+
+<mat-menu #menuMetodoDePago="matMenu">
+ <button mat-menu-item routerLink="/metodosdepagos">Listar</button> 
+ <button mat-menu-item routerLink="/metodosdepagos/nuevo">Registrar</button>
+</mat-menu>
+
+<mat-menu #menuRol="matMenu">
+ <button mat-menu-item routerLink="/roles">Listar</button> 
+ <button mat-menu-item routerLink="/roles/nuevo">Registrar</button>
+</mat-menu>
