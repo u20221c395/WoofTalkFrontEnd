@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
 import {MatIconModule} from '@angular/material/icon';
@@ -13,7 +13,7 @@ import { RolService } from '../../../service/rol.service';
   templateUrl: './listarrol.component.html',
   styleUrl: './listarrol.component.css'
 })
-export class ListarrolComponent {
+export class ListarrolComponent implements OnInit{
  displayedColumns: string[] = ['c1', 'c2', 'c3', 'c4'];
   dataSource: MatTableDataSource<Rol> = new MatTableDataSource()
   constructor(private rS: RolService) { }
