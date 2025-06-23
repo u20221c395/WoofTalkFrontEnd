@@ -43,6 +43,13 @@
   </button>
  </div>
 
+ <div>
+  <button mat-button [matMenuTriggerFor]="matMenuMascotas" class="btn-rojo">
+   <mat-icon>dns</mat-icon>
+   Mascotas
+  </button>
+ </div>
+
 </mat-toolbar>
 
 <mat-menu #menuCalificaciones="matMenu">
@@ -73,4 +80,9 @@
 <mat-menu #matMenuUsuarios="matMenu">
  <button mat-menu-item routerLink="/usuarios">Listar</button> 
   <button mat-menu-item routerLink="/usuarios/nuevo">Registrar</button> 
+</mat-menu>
+
+<mat-menu #matMenuMascotas="matMenu">
+ <button mat-menu-item routerLink="/mascota">Listar</button> 
+  <button mat-menu-item routerLink="/mascota/nuevo">Registrar</button> 
 </mat-menu>

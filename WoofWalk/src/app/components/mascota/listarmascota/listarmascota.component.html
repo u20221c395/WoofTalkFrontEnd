@@ -1,5 +1,5 @@
-<div>
-    <div>
+<div class="container">
+    <div style="text-align: center; margin: 5%;">
         <h1>Lista de mascotas</h1>
     </div>
     <div></div>
@@ -52,7 +52,7 @@
     <!-- Calificacion Columna-->
     <ng-container matColumnDef="c8">
         <th mat-header-cell *matHeaderCellDef> Calificacion </th>
-        <td mat-cell *matCellDef="let element"> {{element.calificacion.calificacion}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.calificacion?.calificacion}} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
