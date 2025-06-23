@@ -1,0 +1,59 @@
+<div class="container">
+    <h2>Registrar Usuario</h2>
+    <form [formGroup]="form" (ngSubmit)="aceptar()">
+        <mat-form-field>
+            <mat-label>Usuario</mat-label>
+            <input matInput formControlName="username" />
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput type="password" formControlName="password" />
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="nombre" />
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Apellido</mat-label>
+            <input matInput formControlName="apellido" />
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Teléfono</mat-label>
+            <input matInput formControlName="telefono" />
+        </mat-form-field>
+
+        <div>
+            <mat-label>Estado</mat-label>
+            <mat-radio-group formControlName="enabled">
+                <mat-radio-button [value]="true">Activo</mat-radio-button>
+                <mat-radio-button [value]="false">Inactivo</mat-radio-button>
+            </mat-radio-group>
+        </div>
+
+        <mat-form-field>
+            <mat-label>Rol</mat-label>
+            <mat-select formControlName="ro">
+                <mat-option *ngFor="let rol of listarRoles" [value]="rol.id">
+                    {{ rol.rol }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Calificación</mat-label>
+            <mat-select formControlName="cali">
+                <mat-option *ngFor="let c of listarCalificaciones" [value]="c.id">
+                    {{ c.calificacion }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit">
+            {{ edicion ? 'Actualizar' : 'Registrar' }}
+        </button>
+    </form>
+</div>

@@ -1,0 +1,29 @@
+<div>
+    <div>
+        <h1>Registro de Roles</h1>
+    </div>
+    <div>
+        <form [formGroup]="form" (submit)="aceptar()">
+            <!-- ¡CORRECCIÓN CLAVE! Mostrar el campo ID solo en modo edición -->
+            <mat-form-field *ngIf="edicion"> 
+                <mat-label>ID</mat-label>
+                <input matInput formControlName="codigo" />
+                <!-- La validación 'required' para ID solo tiene sentido en edición, si el ID es crucial -->
+                <mat-error *ngIf="form.get('codigo')?.hasError('required')">
+                    El código es Obligatorio para actualizar!!
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Nombre del Rol</mat-label>
+                <input matInput formControlName="rol" />
+                <mat-error *ngIf="form.get('rol')?.hasError('required')">
+                    El nombre del rol es Obligatorio!!
+                </mat-error>
+            </mat-form-field>
+            <br>
+
+            <button mat-raised-button color="primary">Registrar Rol</button>
+        </form>
+    </div>
+</div>
