@@ -1,1 +1,47 @@
-<p>insertareditgeolocalizacion works!</p>
+<div class="container">
+    <div style="text-align: center; margin:5%"><h1>Registro de Geolocalizacion</h1></div>
+
+    <div style="text-align: center; margin:5%">
+        <form [formGroup]="form" (submit)="aceptar()">
+            <mat-form-field class="example-full-width">
+                <mat-label>Geolocalizacion</mat-label>
+                <input matInput formControlName="latitud1">
+                <mat-error *ngIf="form.get('latitud1')?.hasError('required')">
+                La Latitud de la Geolocalizacion es obligatoria!!
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width">
+                <mat-label>Longitud</mat-label>
+                <input matInput formControlName="longitud1">
+                <mat-error *ngIf="form.get('longitud1')?.hasError('required')">
+                La longitud de la app es obligatoria!!
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Fecha</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="fecha1">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+            <mat-label>Clima</mat-label>
+            <mat-select formControlName="cl">
+                @for (food of listaClima; track food) {
+                <mat-option [value]="food.idClima">{{food.temperatura}}</mat-option>
+                }
+            </mat-select>
+            <mat-error *ngIf="form.get('cl')?.hasError('required')">
+                El Clima es obligatorio!!
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <button matButton="filled">Registrar</button>
+
+        </form>
+    </div>
+
+</div>
