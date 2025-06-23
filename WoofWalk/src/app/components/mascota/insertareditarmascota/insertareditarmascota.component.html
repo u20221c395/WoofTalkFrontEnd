@@ -1,0 +1,73 @@
+<div class="container">
+    <div style="text-align: center; margin: 5%;">
+        <h1>Registro de mascotas</h1>
+    </div>
+
+    <div style="text-align: center; margin:5%">
+
+        <form [formGroup]="form" (submit)="aceptar()">
+            <mat-form-field class="example-full-width">
+                <input matInput formControlName="nombre1">
+                <mat-error *ngIf="form.get('nombre1')?.hasError('required')">
+                    El nombre de la mascota es obligatoria!!
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width">
+                <input matInput formControlName="raza1">
+                <mat-error *ngIf="form.get('raza1')?.hasError('required')">
+                    La raza de la mascota es obligatoria!!
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width">
+                <input matInput formControlName="edad1">
+                <mat-error *ngIf="form.get('edad1')?.hasError('required')">
+                    La edad de la mascota es obligatoria!!
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Tamaño</mat-label>
+                <mat-select formControlName="tamanio1">
+                    @for (food of tamanio; track food) {
+                    <mat-option [value]="food.value">{{food.viewValue}}</mat-option>
+                    }
+                </mat-select>
+                <mat-error *ngIf="form.get('tamanio1')?.hasError('required')">
+                    El tamaño de la mascota es obligatorio!!
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width">
+                <input matInput formControlName="observaciones1">
+                <mat-error *ngIf="form.get('observaciones1')?.hasError('required')">
+                    Las observaciones de la mascota es obligatoria!!
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Usuario</mat-label>
+                <mat-select formControlName="user1">
+                    @for (food of listaUsuarios; track food) {
+                    <mat-option [value]="food.id">{{food.nombre}}</mat-option>
+                    }
+                </mat-select>
+                <mat-error *ngIf="form.get('user1')?.hasError('required')">
+                    El usuario es obligatorio!!
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Calificacion</mat-label>
+                <mat-select formControlName="calificacion1">
+                    @for (food of listaCalificaciones; track food) {
+                    <mat-option [value]="food.id">{{food.calificacion}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+            <br>
+            <button matButton="filled">Registrar</button>
+        </form>
+    </div>
+</div>
