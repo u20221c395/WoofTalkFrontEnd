@@ -9,8 +9,7 @@ import { ClimaComponent } from "./components/clima/clima.component";
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [MenuComponent,RouterOutlet],
-  imports: [ClimaComponent],
+  imports: [MenuComponent,RouterOutlet, ClimaComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

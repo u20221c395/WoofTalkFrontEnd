@@ -16,6 +16,8 @@ import { InseratareditarusuarioComponent } from './components/usuario/inseratare
 
 import { GeolocalizacionComponent } from './components/geolocalizacion/geolocalizacion.component';
 import { InsertareditgeolocalizacionComponent } from './components/geolocalizacion/insertareditgeolocalizacion/insertareditgeolocalizacion.component';
+import { InsertareditarmascotaComponent } from './components/mascota/insertareditarmascota/insertareditarmascota.component';
+import { MascotaComponent } from './components/mascota/mascota.component';
 
 export const routes: Routes = [
     {
@@ -96,6 +98,14 @@ export const routes: Routes = [
         children:[
             {
                 path:'nuevo', component:InsertareditgeolocalizacionComponent
+            }
+        ]
+    },
+    {
+        path: 'mascota',component:MascotaComponent,
+        children:[
+            {
+                path: 'nuevo', component: InsertareditarmascotaComponent
             }
         ]
     }
