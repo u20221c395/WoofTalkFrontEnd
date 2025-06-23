@@ -14,6 +14,8 @@ import { InseratareditarusuarioComponent } from './components/usuario/inseratare
 
 
 
+import { GeolocalizacionComponent } from './components/geolocalizacion/geolocalizacion.component';
+import { InsertareditgeolocalizacionComponent } from './components/geolocalizacion/insertareditgeolocalizacion/insertareditgeolocalizacion.component';
 
 export const routes: Routes = [
     {
@@ -86,6 +88,14 @@ export const routes: Routes = [
             },
             {
                 path:'ediciones/:id', component:InseratareditarusuarioComponent
+            }
+        ]
+    },
+    {
+        path:'geolocalizacion',component:GeolocalizacionComponent,
+        children:[
+            {
+                path:'nuevo', component:InsertareditgeolocalizacionComponent
             }
         ]
     }
