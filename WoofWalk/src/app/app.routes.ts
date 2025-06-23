@@ -42,5 +42,17 @@ export const routes: Routes = [
                 path: 'ediciones/:id', component: InsertareditarenfermComponent
             }
         ]
+    },
+    {
+        path: 'paseo',
+        component: PaseoComponent,
+        children: [
+            {
+                path: 'nuevo', component: InsertareditarpaseoComponent
+            },
+            {
+                path: 'ediciones/:id', component: InsertareditarpaseoComponent
+            }
+        ]
     }
 ];
