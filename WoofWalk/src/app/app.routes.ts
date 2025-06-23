@@ -106,6 +106,9 @@ export const routes: Routes = [
         children:[
             {
                 path: 'nuevo', component: InsertareditarmascotaComponent
+            },
+            {
+                path: 'ediciones/:id', component: InsertareditarmascotaComponent
             }
         ]
     }

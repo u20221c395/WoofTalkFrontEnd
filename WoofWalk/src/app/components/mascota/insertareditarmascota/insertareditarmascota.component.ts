@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { Mascotas } from '../../../model/mascotas';
 import { Usuario } from '../../../model/usuario';
 import { Calificacion } from '../../../model/calificacion';
@@ -8,7 +13,7 @@ import { Router } from '@angular/router';
 import { UsuarioService } from '../../../service/usuario.service';
 import { CalificacionService } from '../../../service/calificacion.service';
 import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
+import { MatFormField, MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { CommonModule } from '@angular/common';
@@ -16,16 +21,22 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-insertareditarmascota',
   standalone: true,
-  imports: [ReactiveFormsModule, MatInputModule, MatSelectModule, MatButtonModule, CommonModule],
+  imports: [
+    ReactiveFormsModule,
+    MatInputModule,
+    MatSelectModule,
+    MatButtonModule,
+    CommonModule,
+    MatFormField,
+  ],
   templateUrl: './insertareditarmascota.component.html',
   styleUrl: './insertareditarmascota.component.css',
   providers: [provideNativeDateAdapter()],
 })
 export class InsertareditarmascotaComponent implements OnInit {
   form: FormGroup = new FormGroup({});
-  valorDefecto: boolean = true;
+ 
   mascota: Mascotas = new Mascotas();
-
   listaUsuarios: Usuario[] = [];
   listaCalificaciones: Calificacion[] = [];
 
@@ -45,34 +56,34 @@ export class InsertareditarmascotaComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      nombre: ['', Validators.required],
-      raza: ['', Validators.required],
-      edad: ['', [Validators.required, Validators.min(0)]],
-      tamanio: ['', Validators.required],
-      observaciones: ['', Validators.required],
-      user: ['', Validators.required],
-      calificacion: ['', Validators.required],
+      nombre1: ['', Validators.required],
+      raza1: ['', Validators.required],
+      edad1: ['', Validators.required],
+      tamanio1: ['', Validators.required],
+      observaciones1: ['', Validators.required],
+      user1: ['', Validators.required],
+      calificacion1: ['', Validators.required],
     });
 
-    this.uS.list().subscribe((data) => {
+    this.uS.list().subscribe(data => {
       this.listaUsuarios = data;
     });
 
-    this.cS.list().subscribe((data) => {
+    this.cS.list().subscribe(data => {
       this.listaCalificaciones = data;
     });
   }
 
   aceptar() {
     if (this.form.valid) {
-      this.mascota.nombre = this.form.value.nombre;
-      this.mascota.raza = this.form.value.raza;
-      this.mascota.edad = this.form.value.edad;
-      this.mascota.tamanio = this.form.value.tamanio;
-      this.mascota.observaciones = this.form.value.observaciones;
-      this.mascota.user = this.form.value.user;
-      this.mascota.calificacion = this.form.value.calificacion;
-      this.mS.insert(this.mascota).subscribe((data) => {
+      this.mascota.nombre = this.form.value.nombre1;
+      this.mascota.raza = this.form.value.raza1;
+      this.mascota.edad = this.form.value.edad1;
+      this.mascota.tamanio = this.form.value.tamanio1;
+      this.mascota.observaciones = this.form.value.observaciones1;
+      this.mascota.user = {id: this.form.value.user1} as Usuario;
+      this.mascota.calificacion = {id: this.form.value.calificacion1} as Calificacion;
+      this.mS.insert(this.mascota).subscribe(() => {
         this.mS.list().subscribe((data) => {
           this.mS.setList(data);
         });

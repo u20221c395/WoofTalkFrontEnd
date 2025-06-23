@@ -13,14 +13,14 @@ export class MascotasService {
   private url = `${base_url}/mascotas`;
   private listaCambio = new Subject<Mascotas[]>();
 
-  constructor(private h: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
   list(): Observable<Mascotas[]> {
-    return this.h.get<Mascotas[]>(this.url + '/listar');
+    return this.http.get<Mascotas[]>(this.url + '/listar');
   }
 
   insert(a:Mascotas): Observable<Mascotas> {
-    return this.h.post<Mascotas>(this.url + '/registrar', a);
+    return this.http.post<Mascotas>(this.url + '/registrar', a);
   }
 
   getList(){
@@ -30,4 +30,16 @@ export class MascotasService {
   setList(listaNueva:Mascotas[]) {
     this.listaCambio.next(listaNueva);
   }
+
+  listId(id: number){
+      return this.http.get<Mascotas>(`${this.url + '/buscarporid'}/${id}`)
+    }
+  
+    update(ma: Mascotas){
+      return this.http.put(this.url,ma)
+    }
+    
+    deleteC(id: number){
+      return this.http.delete(`${this.url + '/eliminar'}/${id}`)
+    }
 }
