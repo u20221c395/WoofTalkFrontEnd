@@ -11,7 +11,7 @@ const base_url = environment.base; // Asegúrate de que environment.ts define la
 })
 export class RolService {
   private url = `${base_url}/roles`; 
-  private listaCambio = new Subject<Rol[]>(); // <-- CORRECCIÓN 1: Agregado '()' para instanciar el Subject
+  private listaCambio = new Subject<Rol[]>(); 
 
   constructor(private http: HttpClient) { }
 

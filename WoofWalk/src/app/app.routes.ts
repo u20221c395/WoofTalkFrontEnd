@@ -5,6 +5,15 @@ import { ClimaComponent } from './components/clima/clima.component';
 import { InsertareditarclimaComponent } from './components/clima/insertareditar/insertareditarclima.component';
 import { EnfermedadComponent } from './components/enfermedad/enfermedad.component';
 import { InsertareditarenfermComponent } from './components/enfermedad/insertareditarenferm/insertareditarenferm.component';
+import { MetodopagoComponent } from './components/metodopago/metodopago.component';
+import { RolComponent } from './components/rol/rol.component';
+import { InsertareditarMetodoPagoComponent } from './components/metodopago/insertareditarmetodoPago/insertareditarmetodoPago.component';
+import { InsertareditarComponent as InsertareditarRolComponent } from  './components/rol/insertareditarrol/insertareditarrol.component';
+import { UsuarioComponent } from './components/usuario/usuario.component';
+import { InseratareditarusuarioComponent } from './components/usuario/inseratareditarusuario/inseratareditarusuario.component';
+
+
+
 import { GeolocalizacionComponent } from './components/geolocalizacion/geolocalizacion.component';
 import { InsertareditgeolocalizacionComponent } from './components/geolocalizacion/insertareditgeolocalizacion/insertareditgeolocalizacion.component';
 
@@ -41,7 +50,44 @@ export const routes: Routes = [
                 path: 'nuevo', component: InsertareditarenfermComponent
             },
             {
-                path: 'ediciones/:id', component: InsertareditarenfermComponent
+                path:'ediciones/:id', component:InsertareditarenfermComponent
+            }
+        ]
+    },
+
+    {
+        path: 'metodosdepagos',
+        component: MetodopagoComponent,
+        children: [
+            {
+                path: 'nuevo', component: InsertareditarMetodoPagoComponent
+            },
+            {
+                path:'ediciones/:id', component:InsertareditarMetodoPagoComponent
+            }
+        ]
+    },
+    {
+        path: 'roles',
+        component: RolComponent,
+        children: [
+            {
+                path: 'nuevo', component: InsertareditarRolComponent
+            },
+            {
+                path:'ediciones/:id', component:InsertareditarRolComponent
+            }
+        ]
+    },
+    {
+        path: 'usuarios',
+        component: UsuarioComponent,
+        children: [
+            {
+                path: 'nuevo', component: InseratareditarusuarioComponent
+            },
+            {
+                path:'ediciones/:id', component:InseratareditarusuarioComponent
             }
         ]
     },
