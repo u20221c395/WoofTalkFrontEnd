@@ -5,6 +5,8 @@ import { ClimaComponent } from './components/clima/clima.component';
 import { InsertareditarclimaComponent } from './components/clima/insertareditar/insertareditarclima.component';
 import { EnfermedadComponent } from './components/enfermedad/enfermedad.component';
 import { InsertareditarenfermComponent } from './components/enfermedad/insertareditarenferm/insertareditarenferm.component';
+import { GeolocalizacionComponent } from './components/geolocalizacion/geolocalizacion.component';
+import { InsertareditgeolocalizacionComponent } from './components/geolocalizacion/insertareditgeolocalizacion/insertareditgeolocalizacion.component';
 
 export const routes: Routes = [
     {
@@ -40,6 +42,14 @@ export const routes: Routes = [
             },
             {
                 path: 'ediciones/:id', component: InsertareditarenfermComponent
+            }
+        ]
+    },
+    {
+        path:'geolocalizacion',component:GeolocalizacionComponent,
+        children:[
+            {
+                path:'nuevo', component:InsertareditgeolocalizacionComponent
             }
         ]
     }

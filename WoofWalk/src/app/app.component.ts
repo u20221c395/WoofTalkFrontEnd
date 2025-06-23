@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { LandingpageComponent } from "./components/landingpage/landingpage.component";
+import { ClimaComponent } from "./components/clima/clima.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [LandingpageComponent],
+  imports: [ClimaComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
