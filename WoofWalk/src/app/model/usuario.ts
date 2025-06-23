@@ -2,7 +2,7 @@ import { Calificacion } from "./calificacion"
 import { Rol } from "./rol"
 
 export class Usuario{
-    id:number=0
+    id?:number
     username:string=""
     password:string=""
     nombre:string=""
