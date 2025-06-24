@@ -15,22 +15,11 @@ export class RolService {
 
   constructor(private http: HttpClient) { }
 
-  list(): Promise<Rol[]> {
-    return new Promise((resolve, reject) => {
-      this.http.get<Rol[]>(this.url + '/listar').subscribe({
-        next: (data) => {
-          this.listaCambio.next(data); // Emite la nueva lista a través del Subject
-          resolve(data); // Resuelve la Promesa con los datos
-        },
-        error: (err) => { // Captura el error y rechaza la Promesa
-          console.error('Error al listar roles:', err);
-          reject(err);
-        }
-      });
-    });
+  list() {
+    return this.http.get<[Rol]>(this.url + '/listar')
   }
 
-  insert(rol: Rol) { // <-- CORRECCIÓN 4: Cambiado 'c' a 'rol' para claridad
+  insert(rol: Rol) { 
     return this.http.post(this.url + '/agregar', rol);
   }
 
@@ -38,25 +27,15 @@ export class RolService {
     this.listaCambio.next(listaNueva);
   }
 
-  getList(): Observable<Rol[]> { // <-- CORRECCIÓN 3: Tipado de retorno para mayor claridad
+  getList(){ 
     return this.listaCambio.asObservable();
   }
 
-  listId(id: number): Promise<Rol> {
-    return new Promise((resolve, reject) => {
-      this.http.get<Rol>(`${this.url}/buscarporid/${id}`).subscribe({
-        next: (data) => {
-          resolve(data);
-        },
-        error: (err) => {
-          console.error(`Error al buscar rol con ID ${id}:`, err);
-          reject(err);
-        }
-      });
-    });
+  listId(id: number) {
+    return this.http.get<Rol>(`${this.url + '/buscarporid'}/${id}`)
   }
 
-  update(rol: Rol) { // <-- CORRECCIÓN 4: Cambiado 'ca' a 'rol' para claridad
+  update(rol: Rol) { 
     return this.http.put(this.url + '/actualizar', rol);
   }
 

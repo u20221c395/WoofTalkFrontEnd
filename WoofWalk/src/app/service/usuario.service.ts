@@ -17,11 +17,11 @@ export class UsuarioService {
 
   constructor(private h:HttpClient) { }
 
-  list(): Observable<Usuario[]>{ 
+  list(){ 
     return this.h.get<Usuario[]>(this.url + '/listar'); 
   }
 
-  insert(a:Usuario): Observable<Usuario>{
+  insert(a:Usuario){
     return this.h.post<Usuario>(this.url + '/registrar', a); 
   }
   getList(){
@@ -31,4 +31,16 @@ export class UsuarioService {
   setList(listaNueva:Usuario[]){
     this.listaCambio.next(listaNueva)
   }
+
+  listId(id: number){
+    return this.h.get<Usuario>(`${this.url + '/buscarporid'}/${id}`)
+  }
+  
+    update(usu: Usuario){
+      return this.h.put(this.url + '/actualizar', usu)
+    }
+  
+    deleteC(id: number){
+      return this.h.delete(`${this.url + '/eliminar'}/${id}`)
+    }
 }

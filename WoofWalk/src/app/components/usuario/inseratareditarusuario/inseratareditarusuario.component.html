@@ -1,34 +1,49 @@
 <div class="container">
     <h2>Registrar Usuario</h2>
     <form [formGroup]="form" (ngSubmit)="aceptar()">
-        <mat-form-field>
-            <mat-label>Usuario</mat-label>
-            <input matInput formControlName="username" />
-        </mat-form-field>
+       <mat-form-field class="example-full-width">
+                <mat-label>Username</mat-label>
+                <input matInput formControlName="username1">
+                <mat-error *ngIf="form.get('username1')?.hasError('required')">
+                El usuario es obligatoria!!
+                </mat-error>
+            </mat-form-field>
 <br> 
-        <mat-form-field>
-            <mat-label>Password</mat-label>
-            <input matInput type="password" formControlName="password" />
-        </mat-form-field>
+        <mat-form-field class="example-full-width">
+                <mat-label>Password</mat-label>
+                <input matInput formControlName="password1">
+                <mat-error *ngIf="form.get('password1')?.hasError('required')">
+                El password es obligatoria!!
+                </mat-error>
+            </mat-form-field>
 <br> 
-        <mat-form-field>
-            <mat-label>Nombre</mat-label>
-            <input matInput formControlName="nombre" />
-        </mat-form-field>
+        <mat-form-field class="example-full-width">
+                <mat-label>Nombre</mat-label>
+                <input matInput formControlName="nombre1">
+                <mat-error *ngIf="form.get('nombre1')?.hasError('required')">
+                El nombre es obligatoria!!
+                </mat-error>
+            </mat-form-field>
 <br> 
-        <mat-form-field>
-            <mat-label>Apellido</mat-label>
-            <input matInput formControlName="apellido" />
-        </mat-form-field>
+         <mat-form-field class="example-full-width">
+                <mat-label>Apellido</mat-label>
+                <input matInput formControlName="apellido1">
+                <mat-error *ngIf="form.get('apellido1')?.hasError('required')">
+                El apellido es obligatoria!!
+                </mat-error>
+            </mat-form-field>
 <br> 
-        <mat-form-field>
-            <mat-label>Teléfono</mat-label>
-            <input matInput formControlName="telefono" />
-        </mat-form-field>
+         <mat-form-field class="example-full-width">
+                <mat-label>Telefono</mat-label>
+                <input matInput formControlName="telefono1">
+                <mat-error *ngIf="form.get('telefono1')?.hasError('required')">
+                El telefono es obligatoria!!
+                </mat-error>
+            </mat-form-field>
 <br> 
         <div>
             <mat-label>Estado</mat-label>
-            <mat-radio-group formControlName="enabled">
+            <mat-radio-group formControlName="enabled1">
                 <mat-radio-button [value]="true">Activo</mat-radio-button>
                 <mat-radio-button [value]="false">Inactivo</mat-radio-button>
             </mat-radio-group>

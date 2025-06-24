@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl,Validators, ReactiveFormsModule } from '@angular/forms';
 import { Usuario } from '../../../model/usuario';
 import { UsuarioService } from '../../../service/usuario.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -18,20 +18,26 @@ import { MatButtonModule } from '@angular/material/button';
 @Component({
   selector: 'app-inseratareditarusuario',
   standalone: true,
-  imports: [ReactiveFormsModule, MatInputModule, MatFormFieldModule, CommonModule, MatRadioModule, MatSelectModule, MatButtonModule],
+  imports: [ReactiveFormsModule,
+      MatInputModule,
+      MatFormFieldModule,
+      CommonModule,
+      MatRadioModule,
+      MatSelectModule,
+      MatButtonModule],
   templateUrl: './inseratareditarusuario.component.html',
   styleUrl: './inseratareditarusuario.component.css'
 })
 export class InseratareditarusuarioComponent implements OnInit {
-  form: FormGroup;
-  VALORPORDEFECTO: boolean = true;
-  usuario: Usuario = new Usuario();
+  form: FormGroup = new FormGroup({})
 
   id: number = 0;
   edicion: boolean = false;
 
-  listarRoles: Rol[] = [];
-  listarCalificaciones: Calificacion[] = [];
+
+  usu : Usuario=new Usuario()
+  listarRoles: Rol[] = []
+  listarCalificaciones: Calificacion[] = []
 
   constructor(
     private uS: UsuarioService,
@@ -41,26 +47,30 @@ export class InseratareditarusuarioComponent implements OnInit {
     private cS: CalificacionService,
     private route: ActivatedRoute
   ) {
-    this.form = this.formbuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required],
-      nombre: ['', Validators.required],
-      apellido: ['', Validators.required],
-      telefono: ['', Validators.required],
-      enabled: ['', Validators.required],
-      ro: ['', Validators.required], // ID del rol seleccionado
-      cali: ['', Validators.required] // ID de la calificación seleccionada
-    });
+    
   }
 
   ngOnInit(): void {
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
       this.edicion = data['id'] != null;
-      this.init();
+      this.init()
     });
+    this.form = this.formbuilder.group({
+      codigo: [''],
+      username1: ['', Validators.required],
+      password1: ['', Validators.required],
+      nombre1: ['', Validators.required],
+      apellido1: ['', Validators.required],
+      telefono1: ['', Validators.required],
+      enabled1: ['', Validators.required],
+      ro: ['', Validators.required], // ID del rol seleccionado
+      cali: ['', Validators.required] // ID de la calificación seleccionada
+    })
 
-    this.rS.list().then(data => {
+
+
+    this.rS.list().subscribe(data => {
       this.listarRoles = data;
     });
 
@@ -69,42 +79,50 @@ export class InseratareditarusuarioComponent implements OnInit {
     });
   }
 
-  init(): void {
-    if (this.edicion) {
-      // Lógica para edición (no es el foco de esta corrección, pero se mantendría aquí)
-      // Asegúrate de que, al cargar, si el backend devuelve UserDTO con rolId y calificacionId,
-      // los asignes a this.form.patchValue({ ro: data.rolId, cali: data.calificacionId })
-    }
-  }
-
   aceptar() {
     if (this.form.valid) {
-      if (this.edicion) {
-        this.usuario.id = this.id;
-      } else {
-        this.usuario.id = null; // Sigue siendo null para nuevas inserciones, para que el backend autogenere
-      }
+      this.usu.id = this.form.value.codigo
+      this.usu.username = this.form.value.username1
+      this.usu.password = this.form.value.password1
+      this.usu.nombre = this.form.value.nombre1
+      this.usu.apellido = this.form.value.apellido1
+      this.usu.telefono = this.form.value.telefono1
+      this.usu.enabled = this.form.value.enabled1
+      this.usu.rol=this.form.value.ro
+      this.usu.calificacion=this.form.value.cali
 
-      this.usuario.username = this.form.value.username;
-      this.usuario.password = this.form.value.password;
-      this.usuario.nombre = this.form.value.nombre;
-      this.usuario.apellido = this.form.value.apellido;
-      this.usuario.telefono = this.form.value.telefono;
-      this.usuario.enabled = this.form.value.enabled;
+      this.usu.rol = { id: this.form.value.ro } as Rol;
+      this.usu.calificacion = { id: this.form.value.cali } as Calificacion;
 
-      // *** CORRECCIÓN CLAVE: Asignar directamente los IDs ***
-      this.usuario.rolId = this.form.value.ro; // Asigna el ID del rol
-      this.usuario.calificacionId = this.form.value.cali; // Asigna el ID de la calificación
-
-      this.uS.insert(this.usuario).subscribe(data => {
-        this.uS.list().subscribe(updatedList => {
-          this.uS.setList(updatedList);
-          this.router.navigate(['usuarios']);
-        });
-      }, error => { // Manejo de errores
-        console.error('Error al insertar usuario:', error);
-        alert('Error al registrar el usuario. Por favor, intente de nuevo.');
-      });
+      this.uS.insert(this.usu).subscribe(data=>{
+        this.uS.getList().subscribe(data=>{
+          this.uS.setList(data)
+        })
+      })
+     
+  
+      //Redirigir desde app.route.ts
+      this.router.navigate(['usuarios'])
     }
   }
+ init() {
+    if (this.edicion) {
+      this.uS.listId(this.id).subscribe(data => {
+        this.form = new FormGroup({
+          codigo: new FormControl(data.id),
+          username1: new FormControl(data.username),
+          password1: new FormControl(data.id),
+          nombre1: new FormControl(data.nombre),
+          apellido1: new FormControl(data.apellido),
+          telefono1: new FormControl(data.telefono),
+          enabled1: new FormControl(data.enabled),
+          ro: new FormControl(data.rol),
+          cali: new FormControl(data.calificacion)
+        })
+      })
+    }
+  }
+
+  
+  
 }
