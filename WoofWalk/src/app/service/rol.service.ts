@@ -1,66 +1,46 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { Subject, Observable } from 'rxjs'; // <-- CORRECCIÓN 2: Importado 'Observable'
-import { Rol } from '../model/rol'; // Asegúrate de que la ruta a tu modelo Rol sea correcta
+import { Subject } from 'rxjs';
+import { Rol } from '../model/rol';
 
-const base_url = environment.base; // Asegúrate de que environment.ts define la base URL de tu backend
+const base_url = environment.base; 
 
 @Injectable({
   providedIn: 'root'
 })
 export class RolService {
-  private url = `${base_url}/roles`; 
-  private listaCambio = new Subject<Rol[]>(); 
 
-  constructor(private http: HttpClient) { }
+  private url = `${base_url}/roles`
+  private listaCambio = new Subject<Rol[]>
 
-  list(): Promise<Rol[]> {
-    return new Promise((resolve, reject) => {
-      this.http.get<Rol[]>(this.url + '/listar').subscribe({
-        next: (data) => {
-          this.listaCambio.next(data); // Emite la nueva lista a través del Subject
-          resolve(data); // Resuelve la Promesa con los datos
-        },
-        error: (err) => { // Captura el error y rechaza la Promesa
-          console.error('Error al listar roles:', err);
-          reject(err);
-        }
-      });
-    });
+  constructor(private http:HttpClient) { }
+
+  list (){
+    return this.http.get<[Rol]>(this.url + '/listar')
   }
 
-  insert(rol: Rol) { // <-- CORRECCIÓN 4: Cambiado 'c' a 'rol' para claridad
-    return this.http.post(this.url + '/agregar', rol);
+  insert(r: Rol){
+    return this.http.post(this.url + '/registrar', r)
   }
 
-  setList(listaNueva: Rol[]) {
-    this.listaCambio.next(listaNueva);
+  setList(listaNueva: Rol[]){
+    this.listaCambio.next(listaNueva)
   }
 
-  getList(): Observable<Rol[]> { // <-- CORRECCIÓN 3: Tipado de retorno para mayor claridad
-    return this.listaCambio.asObservable();
+  getList(){
+    return this.listaCambio.asObservable()
   }
 
-  listId(id: number): Promise<Rol> {
-    return new Promise((resolve, reject) => {
-      this.http.get<Rol>(`${this.url}/buscarporid/${id}`).subscribe({
-        next: (data) => {
-          resolve(data);
-        },
-        error: (err) => {
-          console.error(`Error al buscar rol con ID ${id}:`, err);
-          reject(err);
-        }
-      });
-    });
+  listId(id: number){
+    return this.http.get<Rol>(`${this.url + '/buscarporid'}/${id}`)
   }
 
-  update(rol: Rol) { // <-- CORRECCIÓN 4: Cambiado 'ca' a 'rol' para claridad
-    return this.http.put(this.url + '/actualizar', rol);
+  update(ro: Rol){
+    return this.http.put(this.url + '/actualizar', ro)
   }
 
-  deleteC(id: number) {
-    return this.http.delete(`${this.url}/eliminar/${id}`);
+  deleteC(id: number){
+    return this.http.delete(`${this.url + '/eliminar'}/${id}`)
   }
 }

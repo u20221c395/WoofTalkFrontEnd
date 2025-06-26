@@ -2,22 +2,23 @@ import { ClimaService } from './../../../service/clima.service';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
-import { RouterLink } from '@angular/router';
-import {MatIconModule} from '@angular/material/icon';
+import { RouterLink, RouterModule } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
 import { Clima } from '../../../model/clima';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-listarclima',
-  standalone: true,
-  imports: [MatTableModule, MatButtonModule, RouterLink, MatIconModule],
-  templateUrl: './listarclima.component.html',
-  styleUrl: './listarclima.component.css'
+    selector: 'app-listarclima',
+    imports: [MatTableModule, MatButtonModule, RouterLink, MatIconModule, RouterModule, MatPaginatorModule],
+    templateUrl: './listarclima.component.html',
+    styleUrl: './listarclima.component.css'
 })
 export class ListarclimaComponent implements OnInit {
 
   displayedColumns: string[] = ['c1', 'c2', 'c3', 'c4', 'c5', 'c6'];
   dataSource: MatTableDataSource<Clima> = new MatTableDataSource()
-  constructor(private cS: ClimaService) { }
+  constructor(private cS: ClimaService, private roter: Router) { }
 
   ngOnInit(): void {
     this.cS.list().subscribe(data => {
@@ -36,5 +37,11 @@ export class ListarclimaComponent implements OnInit {
         this.cS.setList(data)
       })
     })
+  }
+  regresar() {
+    this.roter.navigateByUrl('menu');
+  }
+  nuevo() {
+    this.roter.navigateByUrl('climas/nuevo');
   }
 }

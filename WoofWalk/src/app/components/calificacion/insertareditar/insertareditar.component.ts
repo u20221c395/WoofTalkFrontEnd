@@ -9,11 +9,10 @@ import { CalificacionService } from '../../../service/calificacion.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
-  selector: 'app-insertareditar',
-  standalone: true,
-  imports: [MatInputModule, CommonModule, MatFormFieldModule, ReactiveFormsModule, MatButtonModule],
-  templateUrl: './insertareditar.component.html',
-  styleUrl: './insertareditar.component.css'
+    selector: 'app-insertareditar',
+    imports: [MatInputModule, CommonModule, MatFormFieldModule, ReactiveFormsModule, MatButtonModule],
+    templateUrl: './insertareditar.component.html',
+    styleUrl: './insertareditar.component.css'
 })
 export class InsertareditarComponent implements OnInit {
 
@@ -40,13 +39,13 @@ export class InsertareditarComponent implements OnInit {
     //Validar aqui desde el html
     this.form = this.formBuilder.group({
       codigo: [''],
-      calificacion1: ['', Validators.required]
+      calificacion1: ['', [Validators.required, Validators.min(1), Validators.max(10)]]
     })
   }
 
   aceptar() {
     if (this.form.valid) {
-      this.calificacion.id = this.form.value.codigo
+      this.calificacion.idCalificacion = this.form.value.codigo
       this.calificacion.calificacion = this.form.value.calificacion1
       if (this.edicion) {
         this.cS.update(this.calificacion).subscribe(data => {
@@ -65,15 +64,22 @@ export class InsertareditarComponent implements OnInit {
       this.router.navigate(['calificaciones'])
     }
   }
+  cancelar() {
+    this.router.navigate(['calificaciones']);
+  }
 
   init() {
     if (this.edicion) {
       this.cS.listId(this.id).subscribe(data => {
         this.form = new FormGroup({
-          codigo: new FormControl(data.id),
-          calificacion1: new FormControl(data.calificacion)
-        })
-      })
+          codigo: new FormControl(data.idCalificacion),
+          calificacion1: new FormControl(data.calificacion, [
+            Validators.required,
+            Validators.min(1),
+            Validators.max(10)
+          ])
+        });
+      });
     }
   }
 }

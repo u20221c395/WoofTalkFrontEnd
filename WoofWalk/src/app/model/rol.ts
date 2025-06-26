@@ -1,6 +1,6 @@
 export class Rol {
 
-    id?: number 
+    idRol: number = 0
     rol: string = ""
 }
 
