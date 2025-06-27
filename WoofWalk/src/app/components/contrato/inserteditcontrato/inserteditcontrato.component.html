@@ -1,0 +1,60 @@
+<div class="container">
+    <div style="text-align: center; margin:5%">
+        <h1>Registro de Contrato</h1>
+    </div>
+
+    <div style="text-align: center; margin:5%">
+        <form [formGroup]="form" (submit)="aceptar()">
+            <mat-form-field>
+                <mat-label>Fecha Inicio</mat-label>
+                <input matInput [matDatepicker]="picker1" formControlName="fecha1">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Fecha Fin</mat-label>
+                <input matInput [matDatepicker]="picker2" formControlName="fecha2">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width">
+                <mat-label>Monto</mat-label>
+                <input matInput formControlName="monto1">
+                <mat-error *ngIf="form.get('monto1')?.hasError('required')">
+                    El monto es obligatorio!!
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Mascota</mat-label>
+                <mat-select formControlName="ma">
+                    @for (food of listaMascota; track food) {
+                    <mat-option [value]="food.idMascota">{{food.nombre}}</mat-option>
+                    }
+                </mat-select>
+                <mat-error *ngIf="form.get('ma')?.hasError('required')">
+                    La Mascota es obligatoria!!
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Metodo de Pago</mat-label>
+                <mat-select formControlName="me">
+                    @for (food of listaMetodoPago; track food) {
+                    <mat-option [value]="food.idMetodoPago">{{food.nombre}}</mat-option>
+                    }
+                </mat-select>
+                <mat-error *ngIf="form.get('me')?.hasError('required')">
+                    El metodo de pago es obligatorio!!
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <button matButton="filled">Registrar</button>
+            <button matButton="filled" (click)="cancelar()">Cancelar</button>
+        </form>
+    </div>
+</div>

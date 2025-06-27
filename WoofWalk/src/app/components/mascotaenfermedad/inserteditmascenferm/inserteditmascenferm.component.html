@@ -1,1 +1,43 @@
-<p>inserteditmascenferm works!</p>
+<div class="container">
+    <div style="text-align: center; margin:5%">
+        <h1>Registro de MascotaEnfermedad</h1>
+    </div>
+    <div style="text-align: center; margin:5%">
+        <form [formGroup]="form" (submit)="aceptar()">
+            <mat-form-field *ngIf="edicion">
+                <mat-label>ID</mat-label>
+                <input matInput formControlName="codigo" />
+                <mat-error *ngIf="form.get('codigo')?.hasError('required')">
+                    El Id es Obligatorio para actualizar!!
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Mascota</mat-label>
+                <mat-select formControlName="ma">
+                    @for (food of listaMascota; track food) {
+                    <mat-option [value]="food.idMascota">{{food.nombre}}</mat-option>
+                    }
+                </mat-select>
+                <mat-error *ngIf="form.get('ma')?.hasError('required')">
+                    La mascota es obligatoria!!
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Enfermedad</mat-label>
+                <mat-select formControlName="en">
+                    @for (food of listaEnfermedad; track food) {
+                    <mat-option [value]="food.idEnfermedad">{{food.nombreEnfermedad}}</mat-option>
+                    }
+                </mat-select>
+                <mat-error *ngIf="form.get('en')?.hasError('required')">
+                    La Enfermedad es obligatoria!!
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <button matButton="filled">Registrar</button>
+            <button matButton="filled" (click)="cancelar()">Cancelar</button>
+        </form>
+    </div>
+</div>

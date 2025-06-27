@@ -4,11 +4,10 @@ import { ListarcalificacionComponent } from "./listarcalificacion/listarcalifica
 
 
 @Component({
-  selector: 'app-calificacion',
-  standalone: true,
-  imports: [RouterOutlet, ListarcalificacionComponent],
-  templateUrl: './calificacion.component.html',
-  styleUrl: './calificacion.component.css'
+    selector: 'app-calificacion',
+    imports: [RouterOutlet, ListarcalificacionComponent],
+    templateUrl: './calificacion.component.html',
+    styleUrl: './calificacion.component.css'
 })
 export class CalificacionComponent {
   

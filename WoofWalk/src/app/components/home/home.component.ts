@@ -2,15 +2,14 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-landingpage',
-  standalone: true,
+  selector: 'app-home',
   imports: [CommonModule],
-  templateUrl: './landingpage.component.html',
-  styleUrl: './landingpage.component.css'
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.css'
 })
-export class LandingpageComponent {
-  petFriends = [
-    'avatar1.jpg', 
+export class HomeComponent {
+ petFriends = [
+    'avatar1.jpg',
     'avatar2.jpg',
     'avatar3.jpg',
     'avatar4.jpg',

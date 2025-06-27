@@ -9,11 +9,10 @@ import { Clima } from '../../../model/clima';
 import { ClimaService } from '../../../service/clima.service';
 
 @Component({
-  selector: 'app-insertareditarclima',
-  standalone: true,
-  imports: [MatInputModule, CommonModule, MatFormFieldModule, ReactiveFormsModule, MatButtonModule],
-  templateUrl: './insertareditarclima.component.html',
-  styleUrl: './insertareditarclima.component.css'
+    selector: 'app-insertareditarclima',
+    imports: [MatInputModule, CommonModule, MatFormFieldModule, ReactiveFormsModule, MatButtonModule],
+    templateUrl: './insertareditarclima.component.html',
+    styleUrl: './insertareditarclima.component.css'
 })
 export class InsertareditarclimaComponent implements OnInit {
 
@@ -40,9 +39,9 @@ export class InsertareditarclimaComponent implements OnInit {
     //Validar aqui desde el html
     this.form = this.formBuilder.group({
       codigo: [''],
-      temperatura1: ['', Validators.required],
-      humedad1: ['', Validators.required],
-      condicion1: ['', Validators.required]
+      temperatura1: ['', [Validators.required, Validators.min(-50), Validators.max(500)]],
+      humedad1: ['', [Validators.required, Validators.min(0), Validators.max(30)]],
+      condicion1: ['', [Validators.required, Validators.min(0), Validators.max(10)]],
     })
   }
 
@@ -70,14 +69,30 @@ export class InsertareditarclimaComponent implements OnInit {
     }
   }
 
+  cancelar() {
+    this.router.navigate(['climas']);
+  }
+
   init() {
     if (this.edicion) {
       this.cS.listId(this.id).subscribe(data => {
         this.form = new FormGroup({
           codigo: new FormControl(data.idClima),
-          temperatura1: new FormControl(data.temperatura),
-          humedad1: new FormControl(data.humedad),
-          condicion1: new FormControl(data.condicion)
+          temperatura1: new FormControl(data.temperatura, [
+            Validators.required,
+            Validators.min(-50),
+            Validators.max(50)
+          ]),
+          humedad1: new FormControl(data.humedad, [
+            Validators.required,
+            Validators.min(0),
+            Validators.max(30)
+          ]),
+          condicion1: new FormControl(data.condicion, [
+            Validators.required,
+            Validators.min(0),
+            Validators.max(10)
+          ])
         })
       })
     }
