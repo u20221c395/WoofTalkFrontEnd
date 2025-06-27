@@ -44,3 +44,4 @@ export class RolService {
     return this.http.delete(`${this.url + '/eliminar'}/${id}`)
   }
 }
+

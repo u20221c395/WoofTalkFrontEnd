@@ -26,7 +26,6 @@ export class ListarcalificacionComponent implements OnInit {
       this.dataSource = new MatTableDataSource(data)
     })
 
-    //Para refrescar la pagina automaticamente cada vez que se registre o actualize
     this.cS.getList().subscribe(data => {
       this.dataSource = new MatTableDataSource(data)
     })
