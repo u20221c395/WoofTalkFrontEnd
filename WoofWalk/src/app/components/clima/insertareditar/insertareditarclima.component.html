@@ -1,10 +1,11 @@
-<div>
-    <div>
-        <h1>Registro de Climas</h1>
+<div class="container">
+    <div style="text-align: center; margin: 5%">
+        <h1>Registro de Clima</h1>
     </div>
-    <div>
+
+    <div style="text-align: center; margin: 5%">
         <form [formGroup]="form" (submit)="aceptar()">
-            <mat-form-field *ngIf="edicion">
+            <mat-form-field *ngIf="edicion" class="example-full-width">
                 <mat-label>ID</mat-label>
                 <input matInput formControlName="codigo" />
                 <mat-error *ngIf="form.get('codigo')?.hasError('required')">
@@ -14,9 +15,18 @@
             <br>
             <mat-form-field>
                 <mat-label>Temperatura</mat-label>
-                <input matInput formControlName="temperatura1" />
+                <input matInput formControlName="temperatura1" type="number" />
+
                 <mat-error *ngIf="form.get('temperatura1')?.hasError('required')">
-                    La temperatura es Obligatoria!!
+                    El temperatura es obligatorio!!
+                </mat-error>
+
+                <mat-error *ngIf="form.get('temperatura1')?.hasError('min')">
+                    La temperatura mínima es -50
+                </mat-error>
+
+                <mat-error *ngIf="form.get('temperatura1')?.hasError('max')">
+                    La temperatura máxima es 50
                 </mat-error>
             </mat-form-field>
             <br>
@@ -26,6 +36,14 @@
                 <mat-error *ngIf="form.get('humedad1')?.hasError('required')">
                     La Humedad es Obligatoria!!
                 </mat-error>
+                <mat-error *ngIf="form.get('humedad1')?.hasError('min')">
+                    La humedad mínima es 0
+                </mat-error>
+
+                <mat-error *ngIf="form.get('humedad1')?.hasError('max')">
+                    La humedad máxima es 30
+                </mat-error>
+
             </mat-form-field>
             <br>
             <mat-form-field>
@@ -34,10 +52,18 @@
                 <mat-error *ngIf="form.get('condicion1')?.hasError('required')">
                     La Condicion es Obligatoria!!
                 </mat-error>
+                <mat-error *ngIf="form.get('condicion1')?.hasError('min')">
+                    La condicion mínima es 0
+                </mat-error>
+
+                <mat-error *ngIf="form.get('condicion1')?.hasError('max')">
+                    La condicion máxima es 10
+                </mat-error>
             </mat-form-field>
             <br>
 
             <button matButton="filled">Registrar Clima</button>
+            <button matButton="filled" (click)="cancelar()">Cancelar</button>
         </form>
     </div>
 </div>

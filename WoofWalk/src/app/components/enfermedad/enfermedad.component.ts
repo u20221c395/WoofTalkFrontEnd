@@ -3,11 +3,10 @@ import { ListarenfermedadComponent } from "./listarenfermedad/listarenfermedad.c
 import { ActivatedRoute, RouterOutlet } from '@angular/router';
 
 @Component({
-  selector: 'app-enfermedad',
-  standalone: true,
-  imports: [ListarenfermedadComponent, RouterOutlet],
-  templateUrl: './enfermedad.component.html',
-  styleUrl: './enfermedad.component.css'
+    selector: 'app-enfermedad',
+    imports: [ListarenfermedadComponent, RouterOutlet],
+    templateUrl: './enfermedad.component.html',
+    styleUrl: './enfermedad.component.css'
 })
 export class EnfermedadComponent {
 

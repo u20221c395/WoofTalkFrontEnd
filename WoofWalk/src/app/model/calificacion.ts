@@ -1,5 +1,5 @@
 export class Calificacion {
 
-    id: number = 0
-    calificacion: string = ""
+    idCalificacion: number = 0
+    calificacion: number = 0
 }

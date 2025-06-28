@@ -1,8 +1,8 @@
-<div>
-    <div>
-        <h1>Registro de Metodos de Pago</h1>
+<div class="container">
+    <div style="text-align: center; margin: 5%">
+        <h1>Registro de Metodo de Pago</h1>
     </div>
-    <div>
+    <div style="text-align: center; margin: 5%">
         <form [formGroup]="form" (submit)="aceptar()">
             <mat-form-field  *ngIf="edicion">
                 <mat-label>ID</mat-label>
@@ -14,8 +14,8 @@
             <br>
             <mat-form-field>
                 <mat-label>Nombre</mat-label>
-                <input matInput formControlName="nombre" />
-                <mat-error *ngIf="form.get('nombre')?.hasError('required')">
+                <input matInput formControlName="nombre1" />
+                <mat-error *ngIf="form.get('nombre1')?.hasError('required')">
                     El nombre del metodo de pago que desea es Obligatorio!!
                 </mat-error>
             </mat-form-field>
@@ -24,8 +24,8 @@
             <br>
             <mat-form-field>
                 <mat-label>Descripcion</mat-label>
-                <input matInput formControlName="descripcion" />
-                <mat-error *ngIf="form.get('descripcion')?.hasError('required')">
+                <input matInput formControlName="descripcion1" />
+                <mat-error *ngIf="form.get('descripcion1')?.hasError('required')">
                     La Descripcion es Obligatorio!!
                 </mat-error>
             </mat-form-field>
@@ -34,8 +34,8 @@
             <br>
             <mat-form-field>
                 <mat-label>Estado</mat-label>
-                <input matInput formControlName="estado" />
-                <mat-error *ngIf="form.get('estado')?.hasError('required')">
+                <input matInput formControlName="estado1" />
+                <mat-error *ngIf="form.get('estado1')?.hasError('required')">
                     El Estado es Obligatorio!!
                 </mat-error>
             </mat-form-field>
@@ -43,6 +43,7 @@
 
 
             <button matButton="filled">Registrar Metodo de Pago</button>
+            <button matButton="filled" (click)="cancelar()">Cancelar</button>
         </form>
     </div>
 </div>

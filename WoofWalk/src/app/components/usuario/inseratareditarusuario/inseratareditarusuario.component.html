@@ -1,74 +1,94 @@
 <div class="container">
-    <h2>Registrar Usuario</h2>
-    <form [formGroup]="form" (ngSubmit)="aceptar()">
-       <mat-form-field class="example-full-width">
-                <mat-label>Username</mat-label>
-                <input matInput formControlName="username1">
+    <div style="text-align: center; margin:5%">
+        <h1>Registro de Usuario</h1>
+    </div>
+
+    <div style="text-align: center; margin:5%">
+        <form [formGroup]="form" (ngSubmit)="aceptar()">
+            <mat-form-field *ngIf="edicion">
+                <mat-label>ID</mat-label>
+                <input matInput formControlName="codigo" />
+                <mat-error *ngIf="form.get('codigo')?.hasError('required')">
+                    El Id es Obligatorio para actualizar!!
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Usuario</mat-label>
+                <input matInput formControlName="username1" />
                 <mat-error *ngIf="form.get('username1')?.hasError('required')">
-                El usuario es obligatoria!!
+                    El usuario es obligatorio!!
                 </mat-error>
             </mat-form-field>
-<br> 
-        <mat-form-field class="example-full-width">
+            <br>
+            
+            <mat-form-field>
                 <mat-label>Password</mat-label>
-                <input matInput formControlName="password1">
+                <input matInput type="password" formControlName="password1" />
                 <mat-error *ngIf="form.get('password1')?.hasError('required')">
-                El password es obligatoria!!
+                    El password es obligatorio!!
                 </mat-error>
             </mat-form-field>
-<br> 
-        <mat-form-field class="example-full-width">
+            <br>
+            <mat-form-field>
                 <mat-label>Nombre</mat-label>
-                <input matInput formControlName="nombre1">
+                <input matInput formControlName="nombre1" />
                 <mat-error *ngIf="form.get('nombre1')?.hasError('required')">
-                El nombre es obligatoria!!
+                    El nombre es obligatorio!!
                 </mat-error>
             </mat-form-field>
-<br> 
-         <mat-form-field class="example-full-width">
+            <br>
+            <mat-form-field>
                 <mat-label>Apellido</mat-label>
-                <input matInput formControlName="apellido1">
+                <input matInput formControlName="apellido1" />
                 <mat-error *ngIf="form.get('apellido1')?.hasError('required')">
-                El apellido es obligatoria!!
+                    El apellido es obligatorio!!
                 </mat-error>
             </mat-form-field>
-<br> 
-         <mat-form-field class="example-full-width">
-                <mat-label>Telefono</mat-label>
-                <input matInput formControlName="telefono1">
+            <br>
+            <mat-form-field>
+                <mat-label>Teléfono</mat-label>
+                <input matInput formControlName="telefono1" />
                 <mat-error *ngIf="form.get('telefono1')?.hasError('required')">
-                El telefono es obligatoria!!
+                    El telefono es obligatorio!!
                 </mat-error>
             </mat-form-field>
-<br> 
-        <div>
-            <mat-label>Estado</mat-label>
-            <mat-radio-group formControlName="enabled1">
-                <mat-radio-button [value]="true">Activo</mat-radio-button>
-                <mat-radio-button [value]="false">Inactivo</mat-radio-button>
-            </mat-radio-group>
-        </div>
-<br> 
-        <mat-form-field>
-            <mat-label>Rol</mat-label>
-            <mat-select formControlName="ro">
-                <mat-option *ngFor="let rol of listarRoles" [value]="rol.id">
-                    {{ rol.rol }}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-<br> 
-        <mat-form-field>
-            <mat-label>Calificación</mat-label>
-            <mat-select formControlName="cali">
-                <mat-option *ngFor="let c of listarCalificaciones" [value]="c.id">
-                    {{ c.calificacion }}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-<br> 
-        <button mat-raised-button color="primary" type="submit">
-            {{ edicion ? 'Actualizar' : 'Registrar' }}
-        </button>
-    </form>
-</div>
+            <br>
+            <div>
+                <mat-label>Estado</mat-label>
+                <mat-radio-group formControlName="enabled1">
+                    <mat-radio-button [value]="true">Activo</mat-radio-button>
+                    <mat-radio-button [value]="false">Inactivo</mat-radio-button>
+                </mat-radio-group>
+            </div>
+            <br>
+
+            <mat-form-field>
+                <mat-label>Rol</mat-label>
+                <mat-select formControlName="ro">
+                    @for (food of listarRoles; track food) {
+                    <mat-option [value]="food.idRol">{{food.rol}}</mat-option>
+                    }
+                </mat-select>
+                <mat-error *ngIf="form.get('ro')?.hasError('required')">
+                    El Rol es obligatorio!!
+                </mat-error>
+            </mat-form-field>
+            
+            <br>
+            <mat-form-field>
+                <mat-label>Calificacion</mat-label>
+                <mat-select formControlName="cali">
+                    @for (food of listarCalificaciones; track food) {
+                    <mat-option [value]="food.idCalificacion">{{food.calificacion}}</mat-option>
+                    }
+                </mat-select>
+                <mat-error *ngIf="form.get('cali')?.hasError('required')">
+                    La Calificacion es obligatoria!!
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <button matButton="filled">Registrar</button>
+            <button matButton="filled" (click)="cancelar()">Cancelar</button>
+        </form>
+    </div>

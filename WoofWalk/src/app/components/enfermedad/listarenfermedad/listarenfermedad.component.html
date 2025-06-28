@@ -1,5 +1,5 @@
 <div class="container">
-    <div>
+    <div style="text-align: center;margin:5%">
         <h1>Lista de Enfermedades</h1>
     </div>
     <div>
@@ -46,6 +46,16 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
-
+        <mat-paginator [pageSizeOptions]="[3, 5, 10]" showFirstLastButtons
+            aria-label="Select page of periodic elements">
+        </mat-paginator>
+        <button mat-raised-button color="primary" (click)="nuevo()">
+            <span class="material-icons">add_reaction</span>
+            <p>Nueva Enfermedad</p>
+        </button>
+        <button mat-raised-button color="primary" (click)="regresar()">
+            <span class="material-icons">add_reaction</span>
+            <p>Regresar</p>
+        </button>
     </div>
 </div>

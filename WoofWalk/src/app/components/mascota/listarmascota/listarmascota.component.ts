@@ -4,28 +4,24 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Mascotas } from '../../../model/mascotas';
 import { MascotasService } from '../../../service/mascotas.service';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterModule } from '@angular/router';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-listarmascota',
-  standalone: true,
-  imports: [MatTableModule, MatButtonModule, MatIconModule, RouterLink],
-  templateUrl: './listarmascota.component.html',
-  styleUrl: './listarmascota.component.css',
+    selector: 'app-listarmascota',
+    imports: [MatTableModule, MatButtonModule, MatIconModule, RouterLink, RouterModule, MatPaginatorModule],
+    templateUrl: './listarmascota.component.html',
+    styleUrl: './listarmascota.component.css'
 })
 export class ListarmascotaComponent implements OnInit {
   displayedColumns: string[] = ['c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8', 'c9', 'c10'];
   dataSource: MatTableDataSource<Mascotas> = new MatTableDataSource();
 
-  constructor(private mS: MascotasService) {}
+  constructor(private mS: MascotasService, private roter: Router) { }
 
   ngOnInit(): void {
     this.mS.list().subscribe(data => {
-      data.forEach((m) => {
-        if (!m.calificacion) {
-          m.calificacion = { id: 0, calificacion: 'Sin calificación' };
-        }
-      });
       this.dataSource = new MatTableDataSource(data);
     });
 
@@ -41,5 +37,11 @@ export class ListarmascotaComponent implements OnInit {
         this.mS.setList(data);
       });
     });
+  }
+      regresar() {
+    this.roter.navigateByUrl('menu');
+  }
+  nuevo() {
+    this.roter.navigateByUrl('mascota/nuevo');
   }
 }

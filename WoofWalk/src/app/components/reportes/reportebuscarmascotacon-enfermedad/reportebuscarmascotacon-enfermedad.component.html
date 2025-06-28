@@ -1,0 +1,26 @@
+<div class="container">
+  <h2>Buscar mascotas por enfermedad</h2>
+
+  <input type="text" [(ngModel)]="nombreEnfermedad" placeholder="Nombre de enfermedad" />
+  <button (click)="buscarMascotas()">Buscar</button>
+
+  <div *ngIf="mascotas.length > 0">
+    <h3>Mascotas con la enfermedad "{{ nombreEnfermedad }}"</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre Mascota</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let m of mascotas">
+          <td>{{ m.nombreMascota  }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="mascotas.length === 0 && nombreEnfermedad.trim()">
+    <p>No se encontraron mascotas con esa enfermedad.</p>
+  </div>
+</div>

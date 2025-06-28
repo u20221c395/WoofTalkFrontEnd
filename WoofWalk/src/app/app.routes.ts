@@ -8,18 +8,32 @@ import { InsertareditarenfermComponent } from './components/enfermedad/insertare
 import { MetodopagoComponent } from './components/metodopago/metodopago.component';
 import { RolComponent } from './components/rol/rol.component';
 import { InsertareditarMetodoPagoComponent } from './components/metodopago/insertareditarmetodoPago/insertareditarmetodoPago.component';
-import { InsertareditarComponent as InsertareditarRolComponent } from  './components/rol/insertareditarrol/insertareditarrol.component';
+import { InsertareditarComponent as InsertareditarRolComponent } from './components/rol/insertareditarrol/insertareditarrol.component';
 import { UsuarioComponent } from './components/usuario/usuario.component';
 import { InseratareditarusuarioComponent } from './components/usuario/inseratareditarusuario/inseratareditarusuario.component';
-
-
-
 import { GeolocalizacionComponent } from './components/geolocalizacion/geolocalizacion.component';
 import { InsertareditgeolocalizacionComponent } from './components/geolocalizacion/insertareditgeolocalizacion/insertareditgeolocalizacion.component';
 import { InsertareditarmascotaComponent } from './components/mascota/insertareditarmascota/insertareditarmascota.component';
 import { MascotaComponent } from './components/mascota/mascota.component';
+import { PaseoComponent } from './components/paseo/paseo.component';
+import { InserteditpaseoComponent } from './components/paseo/inserteditpaseo/inserteditpaseo.component';
+import { SolicitudComponent } from './components/solicitud/solicitud.component';
+import { InserteditsolicitudComponent } from './components/solicitud/inserteditsolicitud/inserteditsolicitud.component';
+import { ContratoComponent } from './components/contrato/contrato.component';
+import { InserteditcontratoComponent } from './components/contrato/inserteditcontrato/inserteditcontrato.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { MascotaenfermedadComponent } from './components/mascotaenfermedad/mascotaenfermedad.component';
+import { InserteditmascenfermComponent } from './components/mascotaenfermedad/inserteditmascenferm/inserteditmascenferm.component';
+import { ReportesComponent } from './components/reportes/reportes.component';
+import { Reportemascotaedadmayor10Component } from './components/reportes/reportemascotaedadmayor10/reportemascotaedadmayor10.component';
+import { HomeComponent } from './components/home/home.component';
+import { ReportecantidadrolusuariosComponent } from './components/reportes/reportecantidadrolusuarios/reportecantidadrolusuarios.component';
+import { ReportebuscarmascotaconEnfermedadComponent } from './components/reportes/reportebuscarmascotacon-enfermedad/reportebuscarmascotacon-enfermedad.component';
 
 export const routes: Routes = [
+    {
+        path: '', redirectTo: 'home', pathMatch: 'full'
+    },
     {
         path: 'calificaciones',
         component: CalificacionComponent,
@@ -52,7 +66,7 @@ export const routes: Routes = [
                 path: 'nuevo', component: InsertareditarenfermComponent
             },
             {
-                path:'ediciones/:id', component:InsertareditarenfermComponent
+                path: 'ediciones/:id', component: InsertareditarenfermComponent
             }
         ]
     },
@@ -65,7 +79,7 @@ export const routes: Routes = [
                 path: 'nuevo', component: InsertareditarMetodoPagoComponent
             },
             {
-                path:'ediciones/:id', component:InsertareditarMetodoPagoComponent
+                path: 'ediciones/:id', component: InsertareditarMetodoPagoComponent
             }
         ]
     },
@@ -77,7 +91,7 @@ export const routes: Routes = [
                 path: 'nuevo', component: InsertareditarRolComponent
             },
             {
-                path:'ediciones/:id', component:InsertareditarRolComponent
+                path: 'ediciones/:id', component: InsertareditarRolComponent
             }
         ]
     },
@@ -89,21 +103,24 @@ export const routes: Routes = [
                 path: 'nuevo', component: InseratareditarusuarioComponent
             },
             {
-                path:'ediciones/:id', component:InseratareditarusuarioComponent
+                path: 'ediciones/:id', component: InseratareditarusuarioComponent
             }
         ]
     },
     {
-        path:'geolocalizacion',component:GeolocalizacionComponent,
-        children:[
+        path: 'geolocalizacion', component: GeolocalizacionComponent,
+        children: [
             {
-                path:'nuevo', component:InsertareditgeolocalizacionComponent
+                path: 'nuevo', component: InsertareditgeolocalizacionComponent
+            },
+            {
+                path: 'ediciones/:id', component: InsertareditgeolocalizacionComponent
             }
         ]
     },
     {
-        path: 'mascota',component:MascotaComponent,
-        children:[
+        path: 'mascota', component: MascotaComponent,
+        children: [
             {
                 path: 'nuevo', component: InsertareditarmascotaComponent
             },
@@ -117,11 +134,72 @@ export const routes: Routes = [
         component: PaseoComponent,
         children: [
             {
-                path: 'nuevo', component: InsertareditarpaseoComponent
+                path: 'nuevo', component: InserteditpaseoComponent
             },
             {
-                path: 'ediciones/:id', component: InsertareditarpaseoComponent
+                path: 'ediciones/:id', component: InserteditpaseoComponent
             }
         ]
-    }
+    },
+    {
+        path: 'solicitud',
+        component: SolicitudComponent,
+        children: [
+            {
+                path: 'nuevo', component: InserteditsolicitudComponent
+            },
+            {
+                path: 'ediciones/:id', component: InserteditsolicitudComponent
+            }
+        ]
+    },
+    {
+        path: 'contrato',
+        component: ContratoComponent,
+        children: [
+            {
+                path: 'nuevo', component: InserteditcontratoComponent
+            },
+            {
+                path: 'ediciones/:id', component: InserteditcontratoComponent
+            }
+        ]
+    },
+    {
+        path: 'mascotaenfermedad',
+        component: MascotaenfermedadComponent,
+        children: [
+            {
+                path: 'nuevo', component: InserteditmascenfermComponent
+            },
+            {
+                path: 'ediciones/:id', component: InserteditmascenfermComponent
+            }
+        ]
+    },
+    {
+        path: 'menu',
+        component: MenuComponent,
+        children: [],
+    },
+        {
+        path: 'home',
+        component: HomeComponent,
+        children: [],
+    },
+    {
+        path: 'reports',
+        component: ReportesComponent,
+        children: [
+            {
+                path: 'mascotaconedad10', component: Reportemascotaedadmayor10Component
+            },
+            {
+                path: 'listarCantidadDeUsuariosRegistrados', component: ReportecantidadrolusuariosComponent
+            },
+            {
+                path: 'buscarmascotaPorEnfermedad', component: ReportebuscarmascotaconEnfermedadComponent
+            }
+        ]
+    },
 ];

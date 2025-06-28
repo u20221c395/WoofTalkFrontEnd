@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl,Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { Usuario } from '../../../model/usuario';
 import { UsuarioService } from '../../../service/usuario.service';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
@@ -16,46 +16,39 @@ import { MatButtonModule } from '@angular/material/button';
 
 
 @Component({
-  selector: 'app-inseratareditarusuario',
-  standalone: true,
-  imports: [ReactiveFormsModule,
-      MatInputModule,
-      MatFormFieldModule,
-      CommonModule,
-      MatRadioModule,
-      MatSelectModule,
-      MatButtonModule],
-  templateUrl: './inseratareditarusuario.component.html',
-  styleUrl: './inseratareditarusuario.component.css'
+    selector: 'app-inseratareditarusuario',
+    imports: [ReactiveFormsModule, MatInputModule, MatFormFieldModule, CommonModule, MatRadioModule, MatSelectModule, MatButtonModule],
+    templateUrl: './inseratareditarusuario.component.html',
+    styleUrl: './inseratareditarusuario.component.css'
 })
 export class InseratareditarusuarioComponent implements OnInit {
   form: FormGroup = new FormGroup({})
+  VALORPORDEFECTO: boolean = true;
+  usuario: Usuario = new Usuario();
 
   id: number = 0;
   edicion: boolean = false;
 
-
-  usu : Usuario=new Usuario()
-  listarRoles: Rol[] = []
-  listarCalificaciones: Calificacion[] = []
+  listarRoles: Rol[] = [];
+  listarCalificaciones: Calificacion[] = [];
 
   constructor(
     private uS: UsuarioService,
     private formbuilder: FormBuilder,
     private router: Router,
+    private route: ActivatedRoute,
     private rS: RolService,
-    private cS: CalificacionService,
-    private route: ActivatedRoute
-  ) {
-    
-  }
+    private cS: CalificacionService
+  ) { }
 
   ngOnInit(): void {
+
     this.route.params.subscribe((data: Params) => {
-      this.id = data['id'];
-      this.edicion = data['id'] != null;
+      this.id = data['id']
+      this.edicion = data['id'] != null
       this.init()
-    });
+    })
+
     this.form = this.formbuilder.group({
       codigo: [''],
       username1: ['', Validators.required],
@@ -64,65 +57,67 @@ export class InseratareditarusuarioComponent implements OnInit {
       apellido1: ['', Validators.required],
       telefono1: ['', Validators.required],
       enabled1: ['', Validators.required],
-      ro: ['', Validators.required], // ID del rol seleccionado
-      cali: ['', Validators.required] // ID de la calificación seleccionada
+      ro: ['', Validators.required],
+      cali: ['', Validators.required]
     })
 
-
-
     this.rS.list().subscribe(data => {
-      this.listarRoles = data;
-    });
+      this.listarRoles = data
+    })
 
     this.cS.list().subscribe(data => {
-      this.listarCalificaciones = data;
-    });
+      this.listarCalificaciones = data
+    })
+  }
+
+  cancelar() {
+    this.router.navigate(['usuarios']);
   }
 
   aceptar() {
     if (this.form.valid) {
-      this.usu.id = this.form.value.codigo
-      this.usu.username = this.form.value.username1
-      this.usu.password = this.form.value.password1
-      this.usu.nombre = this.form.value.nombre1
-      this.usu.apellido = this.form.value.apellido1
-      this.usu.telefono = this.form.value.telefono1
-      this.usu.enabled = this.form.value.enabled1
-      this.usu.rol=this.form.value.ro
-      this.usu.calificacion=this.form.value.cali
-
-      this.usu.rol = { id: this.form.value.ro } as Rol;
-      this.usu.calificacion = { id: this.form.value.cali } as Calificacion;
-
-      this.uS.insert(this.usu).subscribe(data=>{
-        this.uS.getList().subscribe(data=>{
-          this.uS.setList(data)
+      this.usuario.idUsuario = this.form.value.codigo
+      this.usuario.username = this.form.value.username1
+      this.usuario.password = this.form.value.password1
+      this.usuario.nombre = this.form.value.nombre1
+      this.usuario.apellido = this.form.value.apellido1
+      this.usuario.telefono = this.form.value.telefono1
+      this.usuario.enabled = this.form.value.enabled1
+      this.usuario.rol.idRol = this.form.value.ro;
+      this.usuario.calificacion.idCalificacion = this.form.value.cali;
+      if (this.edicion) {
+        this.uS.update(this.usuario).subscribe(data => {
+          this.uS.list().subscribe(data => {
+            this.uS.setList(data)
+          })
         })
-      })
-     
-  
+      } else {
+        this.uS.insert(this.usuario).subscribe(() => {
+          this.uS.list().subscribe(data => {
+            this.uS.setList(data)
+          })
+        })
+      }
       //Redirigir desde app.route.ts
       this.router.navigate(['usuarios'])
     }
   }
- init() {
+
+  init() {
     if (this.edicion) {
       this.uS.listId(this.id).subscribe(data => {
         this.form = new FormGroup({
-          codigo: new FormControl(data.id),
+          codigo: new FormControl(data.idUsuario),
           username1: new FormControl(data.username),
-          password1: new FormControl(data.id),
+          password1: new FormControl(data.password),
           nombre1: new FormControl(data.nombre),
           apellido1: new FormControl(data.apellido),
           telefono1: new FormControl(data.telefono),
           enabled1: new FormControl(data.enabled),
-          ro: new FormControl(data.rol),
-          cali: new FormControl(data.calificacion)
+          ro: new FormControl(data.rol.idRol),
+          cali: new FormControl(data.calificacion.idCalificacion),
         })
       })
     }
   }
-
-  
-  
 }

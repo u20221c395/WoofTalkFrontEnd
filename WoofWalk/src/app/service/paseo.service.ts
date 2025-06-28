@@ -11,6 +11,41 @@ const base_url = environment.base
 })
 export class PaseoService {
 
+private url = `${base_url}/paseos`
+    private listaCambio = new Subject<Paseo[]>
+  
+    constructor(private http:HttpClient) { }
+  
+    list (){
+      return this.http.get<[Paseo]>(this.url + '/listar')
+    }
+  
+    insert(p: Paseo){
+      return this.http.post(this.url + '/agregar', p)
+    }
+  
+    setList(listaNueva: Paseo[]){
+      this.listaCambio.next(listaNueva)
+    }
+  
+    getList(){
+      return this.listaCambio.asObservable()
+    }
+  
+    listId(id: number){
+      return this.http.get<Paseo>(`${this.url + '/buscarporid'}/${id}`)
+    }
+  
+    update(pa: Paseo){
+      return this.http.put(this.url + '/actualizar', pa)
+    }
+  
+    deleteC(id: number){
+      return this.http.delete(`${this.url + '/eliminar'}/${id}`)
+    }
+
+
+/*
   private url = `${base_url}/paseos`
     private listaCambio = new Subject<Paseo[]>
   
@@ -63,6 +98,6 @@ export class PaseoService {
   
     deleteC(id: number){
       return this.http.delete(`${this.url + '/eliminar'}/${id}`)
-    }
+    }*/
   }
   

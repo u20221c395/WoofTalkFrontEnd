@@ -11,6 +11,43 @@ const base_url = environment.base
 })
 export class MetodopagoService {
 
+private url = `${base_url}/metodosdepago`
+    private listaCambio = new Subject<Metodopago[]>
+  
+    constructor(private http:HttpClient) { }
+  
+    list (){
+      return this.http.get<[Metodopago]>(this.url + '/listar')
+    }
+  
+    insert(m: Metodopago){
+      return this.http.post(this.url + '/registrar', m)
+    }
+  
+    setList(listaNueva: Metodopago[]){
+      this.listaCambio.next(listaNueva)
+    }
+  
+    getList(){
+      return this.listaCambio.asObservable()
+    }
+  
+    listId(id: number){
+      return this.http.get<Metodopago>(`${this.url + '/buscarporid'}/${id}`)
+    }
+  
+    update(met: Metodopago){
+      return this.http.put(this.url + '/actualizar', met)
+    }
+  
+    deleteC(id: number){
+      return this.http.delete(`${this.url + '/eliminar'}/${id}`)
+    }
+
+
+
+  
+/*
   private url = `${base_url}/metodosdepago`; // Asegúrate que esta URL coincida con tu API (plural o singular?)
   private listaCambio = new Subject<Metodopago[]>(); // Subject para emitir listas de Metodopago
 
@@ -65,4 +102,5 @@ export class MetodopagoService {
     deleteC(id: number){
       return this.http.delete(`${this.url + '/eliminar'}/${id}`)
     }
+      */
 }
