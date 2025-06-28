@@ -27,8 +27,11 @@ import { InserteditmascenfermComponent } from './components/mascotaenfermedad/in
 import { ReportesComponent } from './components/reportes/reportes.component';
 import { Reportemascotaedadmayor10Component } from './components/reportes/reportemascotaedadmayor10/reportemascotaedadmayor10.component';
 import { HomeComponent } from './components/home/home.component';
+<<<<<<< HEAD
 import { ReportecantidadrolusuariosComponent } from './components/reportes/reportecantidadrolusuarios/reportecantidadrolusuarios.component';
 import { ReportebuscarmascotaconEnfermedadComponent } from './components/reportes/reportebuscarmascotacon-enfermedad/reportebuscarmascotacon-enfermedad.component';
+=======
+>>>>>>> 60486da0800bb2fbd576ab5ff825c3564c23271c
 
 export const routes: Routes = [
     {
@@ -193,13 +196,17 @@ export const routes: Routes = [
         children: [
             {
                 path: 'mascotaconedad10', component: Reportemascotaedadmayor10Component
+<<<<<<< HEAD
             },
             {
                 path: 'listarCantidadDeUsuariosRegistrados', component: ReportecantidadrolusuariosComponent
             },
             {
                 path: 'buscarmascotaPorEnfermedad', component: ReportebuscarmascotaconEnfermedadComponent
+=======
+>>>>>>> 60486da0800bb2fbd576ab5ff825c3564c23271c
             }
         ]
     },
 ];
+

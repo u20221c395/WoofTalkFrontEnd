@@ -1,9 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+<<<<<<< HEAD
 import { Observable, Subject } from 'rxjs';
 import { Rol } from '../model/rol';
 import { CantidadRolUsers } from '../model/CantidadRolUsuarioDTO';
+=======
+import { Subject } from 'rxjs';
+import { Rol } from '../model/rol';
+>>>>>>> 60486da0800bb2fbd576ab5ff825c3564c23271c
 
 const base_url = environment.base; 
 
@@ -50,3 +55,4 @@ export class RolService {
   }
 
 }
+

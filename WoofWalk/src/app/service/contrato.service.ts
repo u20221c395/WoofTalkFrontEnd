@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
+<<<<<<< HEAD
 import { Observable, Subject } from 'rxjs';
+=======
+import { Subject } from 'rxjs';
+>>>>>>> 60486da0800bb2fbd576ab5ff825c3564c23271c
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http'
 import { Contrato } from '../model/contrato';
@@ -15,6 +19,7 @@ private url = `${base_url}/contratos`
   
     constructor(private http:HttpClient) { }
   
+<<<<<<< HEAD
     list(): Observable<Contrato[]> {
        return this.http.get<Contrato[]>(this.url + '/listar');
      }
@@ -22,6 +27,15 @@ private url = `${base_url}/contratos`
    insert(a: Contrato): Observable<Contrato> {
        return this.http.post<Contrato>(this.url + '/agregar', a);
      }
+=======
+    list (){
+      return this.http.get<[Contrato]>(this.url + '/listar')
+    }
+  
+    insert(c: Contrato){
+      return this.http.post(this.url + '/agregar', c)
+    }
+>>>>>>> 60486da0800bb2fbd576ab5ff825c3564c23271c
   
     setList(listaNueva: Contrato[]){
       this.listaCambio.next(listaNueva)
