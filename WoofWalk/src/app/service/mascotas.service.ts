@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Mascotas } from '../model/mascotas';
-import { Observable, Subject } from 'rxjs';
+import { map, Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { MascotasporDuenoDTO } from '../model/MascotasporDuenoDTO';
 import { Mascotaconedad10DTO } from '../model/mascotasconedad10DTO';
+import { MascotasRazaDTO } from '../model/mascotasRazaDTO';
 
 const base_url = environment.base;
 
@@ -51,5 +52,15 @@ export class MascotasService {
 
   getEdad(): Observable<Mascotaconedad10DTO[]> {
     return this.http.get<Mascotaconedad10DTO[]>(this.url + '/mascotasconedadmasde10')
+  }
+
+  getRaza(): Observable<MascotasRazaDTO[]> {
+    return this.http.get<MascotasRazaDTO[]>(this.url + '/razasdemascotas')
+  }
+
+  getTamanio(tamanio: string): Observable<string[]>{
+    return this.http.get<string[]>(
+      this.url + '/mascotasPorTamaño', {params: {tamanio}}
+    )
   }
 }

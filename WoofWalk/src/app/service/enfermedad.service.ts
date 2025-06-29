@@ -19,7 +19,6 @@ export class EnfermedadService {
 
   list() {
     return this.http.get<[Enfermedad]>(this.url + '/listar')
-<<<<<<< HEAD
   }
 
   insert(e: Enfermedad) {
@@ -45,38 +44,5 @@ export class EnfermedadService {
   deleteC(id: number) {
     return this.http.delete(`${this.url + '/eliminar'}/${id}`)
   }
-
-  getmascotaporEnfermedad(nombreEnfermedad:string){
-  return this.http.get<BuscarPorMascota[]>(`${this.url}/mascotasPorEnfermedad/${encodeURIComponent(nombreEnfermedad)}`);
-  }
-
-
-=======
-  }
-
-  insert(e: Enfermedad) {
-    return this.http.post(this.url + '/registrar', e)
-  }
-
-  setList(listaNueva: Enfermedad[]) {
-    this.listaCambio.next(listaNueva)
-  }
-
-  getList() {
-    return this.listaCambio.asObservable()
-  }
-
-  listId(id: number) {
-    return this.http.get<Enfermedad>(`${this.url + '/buscarporid'}/${id}`)
-  }
-
-  update(en: Enfermedad) {
-    return this.http.put(this.url + '/actualizar', en)
-  }
-
-  deleteC(id: number) {
-    return this.http.delete(`${this.url + '/eliminar'}/${id}`)
-  }
->>>>>>> 60486da0800bb2fbd576ab5ff825c3564c23271c
   
 }
