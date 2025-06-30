@@ -6,7 +6,7 @@
         <form [formGroup]="form" (submit)="aceptar()">
             <mat-form-field *ngIf="edicion">
                 <mat-label>ID</mat-label>
-                <input matInput formControlName="codigo" />
+                <input matInput formControlName="codigo" readonly/>
                 <mat-error *ngIf="form.get('codigo')?.hasError('required')">
                     El Id es Obligatorio para actualizar!!
                 </mat-error>
@@ -16,7 +16,7 @@
                 <mat-label>Mascota</mat-label>
                 <mat-select formControlName="ma">
                     @for (food of listaMascota; track food) {
-                    <mat-option [value]="food.idMascota">{{food.nombre}}</mat-option>
+                    <mat-option [value]="food.idMascota">{{food.nombremascota}}</mat-option>
                     }
                 </mat-select>
                 <mat-error *ngIf="form.get('ma')?.hasError('required')">

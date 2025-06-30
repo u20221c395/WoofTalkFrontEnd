@@ -14,7 +14,7 @@ export class ReportemascotaporduenoComponent implements OnInit{
     responsive:true
   }
   barChartLabels:string[]=[]
-  barChartType:ChartType='pie'
+  barChartType:ChartType='bar'
   barChartLegend=true
   barChartData:ChartDataset[]=[]
   constructor(private mS:MascotasService){}

@@ -3,6 +3,7 @@ import { Subject } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http'
 import { Enfermedad } from '../model/enfermedad';
+import { BuscarPorMascota } from '../model/BuscarPorMascota';
 
 const base_url = environment.base
 
@@ -42,6 +43,10 @@ export class EnfermedadService {
 
   deleteC(id: number) {
     return this.http.delete(`${this.url + '/eliminar'}/${id}`)
+  }
+
+    getmascotaporEnfermedad(nombreEnfermedad:string){
+  return this.http.get<BuscarPorMascota[]>(`${this.url}/mascotasPorEnfermedad/${encodeURIComponent(nombreEnfermedad)}`);
   }
   
 }

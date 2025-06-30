@@ -1,5 +1,5 @@
 export class Mascotaconedad10DTO {
 
-    nombre: string = ""
+    nombremascota: string = ""
     edad: number = 0
 }

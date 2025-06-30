@@ -1,0 +1,32 @@
+<div class = "buscar-container">
+    <div class = "title" style="text-align: center; margin-bottom: 20px;">
+        <h1>
+            Mascotas por tamaño
+        </h1>
+    </div>
+
+    <div class = "form-container">
+        <label>
+            Tamaño de la mascota:
+            <input type = "text" [(ngModel)]="tamanio" placeholder="Pequeño, Mediano, Grande">
+        </label>
+        <button (click)="buscar()">Buscar</button>
+    </div>
+   
+    <table *ngIf="nombres.length >0" class="table">
+        <thead>
+            <tr>
+                Nombre de la mascota
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let nombre of nombres">
+                <td> {{nombre}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div *ngIf="!nombres.length" class="no-results">
+        No se encontraron mascotas de tamaño "{{tamanio}}"
+    </div>
+</div>

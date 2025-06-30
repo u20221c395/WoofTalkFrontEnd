@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Rol } from '../model/rol';
+import { CantidadRolUsers } from '../model/CantidadRolUsers';
 
 const base_url = environment.base; 
 
@@ -43,5 +44,8 @@ export class RolService {
   deleteC(id: number){
     return this.http.delete(`${this.url + '/eliminar'}/${id}`)
   }
-}
 
+   getRolUsers(): Observable<CantidadRolUsers[]> {
+    return this.http.get<CantidadRolUsers[]>('http://localhost:8082/roles/listarCantidadDeUsuariosRegistrados')
+  }
+}

@@ -27,6 +27,11 @@ import { InserteditmascenfermComponent } from './components/mascotaenfermedad/in
 import { ReportesComponent } from './components/reportes/reportes.component';
 import { Reportemascotaedadmayor10Component } from './components/reportes/reportemascotaedadmayor10/reportemascotaedadmayor10.component';
 import { HomeComponent } from './components/home/home.component';
+import { ReportebuscarmascotaconEnfermedadComponent } from './components/reportes/reportebuscarmascotacon-enfermedad/reportebuscarmascotacon-enfermedad.component';
+import { ReportecantidadrolusuariosComponent } from './components/reportes/reportecantidadrolusuarios/reportecantidadrolusuarios.component';
+import { ServicioComponent } from './components/home/servicio/servicio.component';
+import { ReportetamaniomascotaComponent } from './components/reportes/reportetamaniomascota/reportetamaniomascota.component';
+import { ReporterazasmascotasComponent } from './components/reportes/reporterazasmascotas/reporterazasmascotas.component';
 
 export const routes: Routes = [
     {
@@ -180,10 +185,14 @@ export const routes: Routes = [
         component: MenuComponent,
         children: [],
     },
-        {
+    {
         path: 'home',
         component: HomeComponent,
-        children: [],
+        children: [
+            {
+                path: 'servicio', component: ServicioComponent
+            }
+        ],
     },
     {
         path: 'reports',
@@ -191,8 +200,20 @@ export const routes: Routes = [
         children: [
             {
                 path: 'mascotaconedad10', component: Reportemascotaedadmayor10Component
+            },
+            {
+                path: 'listarCantidadDeUsuariosRegistrados', component: ReportecantidadrolusuariosComponent
+            },
+            {
+                path: 'buscarmascotaPorEnfermedad', component: ReportebuscarmascotaconEnfermedadComponent
+
+            },
+            {
+                path: 'tamaniomascota', component: ReportetamaniomascotaComponent
+            },
+            {
+                path: 'razamascota', component: ReporterazasmascotasComponent
             }
         ]
     },
 ];
-

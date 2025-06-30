@@ -49,7 +49,7 @@ export class InsertareditarMetodoPagoComponent implements OnInit {
   aceptar() {
     if (this.form.valid) {
       this.metodopago.idMetodoPago = this.form.value.codigo
-      this.metodopago.nombre = this.form.value.nombre1
+      this.metodopago.nombrepago = this.form.value.nombre1
       this.metodopago.descripcion = this.form.value.descripcion1
       this.metodopago.estado = this.form.value.estado1
       if (this.edicion) {
@@ -79,7 +79,7 @@ export class InsertareditarMetodoPagoComponent implements OnInit {
       this.mS.listId(this.id).subscribe(data => {
         this.form = new FormGroup({
           codigo: new FormControl(data.idMetodoPago),
-          nombre1: new FormControl(data.nombre),
+          nombre1: new FormControl(data.nombrepago),
           descripcion1: new FormControl(data.descripcion),
           estado1: new FormControl(data.estado)
         })

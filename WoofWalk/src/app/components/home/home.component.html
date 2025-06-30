@@ -2,7 +2,7 @@
 <section class="pre-footer">
   <div class="pre-footer-links">
     <a href="#about">Acerca</a>
-    <a href="#services">Nuestro Servicio</a>
+    <a [routerLink]="['/home/servicio']">Nuestro Servicio</a>
     <a href="#reviews">Reseñas</a>
     <a href="#contact">Contacto</a>
   </div>
@@ -11,7 +11,7 @@
   </div>
 </section>
 
-<!-- Inicio Section --> 
+<!-- Inicio Section -->
 <section class="hero">
   <div class="hero-text">
     <h1>ENCUENTRA LO QUE <br />TU PELUDO <br /> NECESITA CON <br /><span>WOOFWALK!</span></h1>
@@ -26,7 +26,7 @@
 <!-- Pet Friends -->
 <section class="pet-friends">
   <h2>Pets Friends</h2>
-      <p>Usuarios Registrados: +5K</p>
+  <p>Usuarios Registrados: +5K</p>
   <div class="avatars">
     <img *ngFor="let img of petFriends" [src]="img" alt="Pet Friend" />
   </div>
@@ -35,26 +35,30 @@
 <!-- Services -->
 <section class="services">
   <h2>Nuestro Servicio</h2>
-  <div class="cards">   
+  <div class="cards">
     <div class="card">
       <img src="dog1.png" alt="Walk" />
       <h3>Paseadores</h3>
-      <p>Nuestros paseadores estarán disponibles para sacar a tu perro a pasear en los horarios y días que mejor se adapten a tus necesidades y las de tu mascota. Ya sea que necesites un paseo diario o esporádico, nuestros paseadores estarán ahí para asegurarse de que tu perro reciba el ejercicio y la atención que necesita para mantenerse feliz y saludable</p>
+      <p>Nuestros paseadores estarán disponibles para sacar a tu perro a pasear en los horarios y días que mejor se
+        adapten a tus necesidades y las de tu mascota. Ya sea que necesites un paseo diario o esporádico, nuestros
+        paseadores estarán ahí para asegurarse de que tu perro reciba el ejercicio y la atención que necesita para
+        mantenerse feliz y saludable</p>
       <button>Explora</button>
     </div>
     <div class="card card-invisible">
-     <img src="dog2.png" alt="Care" />
+      <img src="dog2.png" alt="Care" />
       <h3>Cuidadores</h3>
-      <p>Nuestros cuidadores de mascotas están altamente capacitados para brindar el mejor cuidado posible a tu mascota.</p>
-      <button>Explora</button> 
+      <p>Nuestros cuidadores de mascotas están altamente capacitados para brindar el mejor cuidado posible a tu mascota.
+      </p>
+      <button>Explora</button>
     </div>
   </div>
 </section>
 
 <!-- Nosotros -->
 <section class="about">
-  <h2 class="about-title">Acerca de</h2> 
- 
+  <h2 class="about-title">Acerca de</h2>
+
   <div class="about-content">
     <div class="about-img">
       <img src="dogabout.jpg" alt="Nosotros" />
@@ -63,7 +67,9 @@
     <div class="about-text">
       <h3>Nosotros hacemos que cuidar de tu mascota sea más fácil</h3>
       <p>
-        Ya sea que necesites un paseador de perros confiable, un cuidador de mascotas para un fin de semana largo, un servicio de cuidado diurno para perros o cualquier otra cosa relacionada con el cuidado de tu mascota, nosotros estamos aquí para ayudarte.
+        Ya sea que necesites un paseador de perros confiable, un cuidador de mascotas para un fin de semana largo, un
+        servicio de cuidado diurno para perros o cualquier otra cosa relacionada con el cuidado de tu mascota, nosotros
+        estamos aquí para ayudarte.
       </p>
       <button>Explora</button>
     </div>
@@ -76,13 +82,15 @@
   <img class="testimonial-img" src="profe.png" alt="Testimonio">
   <div class="testimonial-text">
     <h2> Opinión de la Comunidad</h2>
-    <p>¡Esta plataforma es increíble! Encontrar un cuidador o paseador de perros confiable y de calidad nunca ha sido tan fácil. Me encanta la variedad de opciones y la facilidad de uso de la plataforma. Definitivamente la recomendaría a cualquier dueño de mascota que busque una solución de cuidado confiable y conveniente.</p>
+    <p>¡Esta plataforma es increíble! Encontrar un cuidador o paseador de perros confiable y de calidad nunca ha sido
+      tan fácil. Me encanta la variedad de opciones y la facilidad de uso de la plataforma. Definitivamente la
+      recomendaría a cualquier dueño de mascota que busque una solución de cuidado confiable y conveniente.</p>
   </div>
 </section>
 
 <!-- CTA -->
 <section class="cta">
-  <div class="cta-content"> 
+  <div class="cta-content">
     <div class="cta-img">
       <img src="perrito.png" alt="Perrito feliz">
     </div>
@@ -92,6 +100,9 @@
     </div>
   </div>
 </section>
+
+<router-outlet></router-outlet>
+
 
 <!-- Footer -->
 <footer class="footer">

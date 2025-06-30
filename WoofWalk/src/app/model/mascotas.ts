@@ -4,7 +4,7 @@ import { Usuario } from "./usuario";
 export class Mascotas {
 
   idMascota: number = 0;
-  nombre: string = "";
+  nombremascota: string = "";
   raza: string = "";
   edad: number = 0;
   tamanio: string = "";
