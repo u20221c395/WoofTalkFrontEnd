@@ -48,7 +48,7 @@ export class ListargeolocalizacionComponent implements OnInit {
   }
 
   getStaticMapUrl(lat: number, lng: number): string {
-    const apiKey = 'AIzaSyB_UF5ebwByl-uGccbUFzv6kYSAJ2DQ3PU'; 
+    const apiKey = 'KEY'; 
     const zoom = 12;            
     const size = '600x300';      
     return `https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lng}&zoom=${zoom}&size=${size}&markers=color:red%7C${lat},${lng}&key=${apiKey}`;
