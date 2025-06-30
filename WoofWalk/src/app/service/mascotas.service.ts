@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Mascotas } from '../model/mascotas';
-import { Observable, Subject } from 'rxjs';
+import { map, Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { MascotasporDuenoDTO } from '../model/MascotasporDuenoDTO';
 import { Mascotaconedad10DTO } from '../model/mascotasconedad10DTO';

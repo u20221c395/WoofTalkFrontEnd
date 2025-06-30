@@ -49,3 +49,4 @@ export class RolService {
     return this.http.get<CantidadRolUsers[]>('http://localhost:8082/roles/listarCantidadDeUsuariosRegistrados')
   }
 }
+
