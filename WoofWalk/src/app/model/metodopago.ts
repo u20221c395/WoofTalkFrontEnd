@@ -1,7 +1,7 @@
 export class Metodopago {
 
     idMetodoPago: number = 0
-    nombre: string = ""
+    nombrepago: string = ""
     descripcion: string = ""
     estado: string = ""
 }

@@ -93,7 +93,7 @@ export class InsertareditarmascotaComponent implements OnInit {
   aceptar() {
     if (this.form.valid) {
       this.mascota.idMascota = this.form.value.codigo
-      this.mascota.nombre = this.form.value.nombre1
+      this.mascota.nombremascota = this.form.value.nombre1
       this.mascota.raza = this.form.value.raza1
       this.mascota.edad = this.form.value.edad1
       this.mascota.tamanio = this.form.value.tamanio1
@@ -123,7 +123,7 @@ export class InsertareditarmascotaComponent implements OnInit {
       this.mS.listId(this.id).subscribe(data => {
         this.form = new FormGroup({
           codigo: new FormControl(data.idMascota),
-          nombre1: new FormControl(data.nombre),
+          nombre1: new FormControl(data.nombremascota),
           raza1: new FormControl(data.raza),
           edad1: new FormControl(data.edad, [
             Validators.required,

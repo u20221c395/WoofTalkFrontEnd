@@ -14,13 +14,13 @@ export class Reportemascotaedadmayor10Component implements OnInit {
     responsive: true
   }
   barChartLabels: string[] = []
-  barChartType: ChartType = 'bar'
+  barChartType: ChartType = 'pie'
   barChartLegend = true
   barChartData: ChartDataset[] = []
   constructor(private mS: MascotasService) { }
   ngOnInit(): void {
     this.mS.getEdad().subscribe(data => {
-      this.barChartLabels = data.map(item => item.nombre)
+      this.barChartLabels = data.map(item => item.nombremascota)
       this.barChartData = [
         {
           data: data.map(item => item.edad),

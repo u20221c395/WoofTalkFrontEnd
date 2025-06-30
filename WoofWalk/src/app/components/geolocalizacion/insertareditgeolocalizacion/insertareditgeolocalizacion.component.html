@@ -6,14 +6,14 @@
         <form [formGroup]="form" (submit)="aceptar()">
             <mat-form-field *ngIf="edicion">
                 <mat-label>ID</mat-label>
-                <input matInput formControlName="codigo" />
+                <input matInput formControlName="codigo" readonly/>
                 <mat-error *ngIf="form.get('codigo')?.hasError('required')">
                     El Id es Obligatorio para actualizar!!
                 </mat-error>
             </mat-form-field>
             <br>
             <mat-form-field class="example-full-width">
-                <mat-label>Geolocalizacion</mat-label>
+                <mat-label>Latitud</mat-label>
                 <input matInput formControlName="latitud1">
                 <mat-error *ngIf="form.get('latitud1')?.hasError('required')">
                     La Latitud de la Geolocalizacion es obligatoria!!

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable, Subject } from 'rxjs';
 import { Rol } from '../model/rol';
-import { CantidadRolUsers } from '../model/CantidadRolUsuarioDTO';
+import { CantidadRolUsers } from '../model/CantidadRolUsers';
 
 const base_url = environment.base; 
 
@@ -45,9 +45,8 @@ export class RolService {
     return this.http.delete(`${this.url + '/eliminar'}/${id}`)
   }
 
- getRolUsers(): Observable<CantidadRolUsers[]> {
+   getRolUsers(): Observable<CantidadRolUsers[]> {
     return this.http.get<CantidadRolUsers[]>('http://localhost:8082/roles/listarCantidadDeUsuariosRegistrados')
   }
-
 }
 

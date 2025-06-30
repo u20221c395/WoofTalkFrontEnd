@@ -2,9 +2,9 @@
 
   text-align: center;
 
-  margin-bottom: 40px; /* Increase the margin-bottom to move the title lower */
+  margin-bottom: 40px; 
 
-  margin-top: 60px;  /* Add a margin-top to further position it down the page */
+  margin-top: 60px; 
 
  }
 .title h1 {
@@ -27,11 +27,11 @@
 
  .chart-container {
 
-  width: 40%; /* Ajusta este valor según sea necesario */
+  width: 40%;
 
-  margin: 0 auto; /* Centra el gráfico horizontalmente */
+  margin: 0 auto; 
 
-  padding: 9px; /* Espacio alrededor del gráfico */
+  padding: 9px; 
 
   box-sizing: border-box;
 

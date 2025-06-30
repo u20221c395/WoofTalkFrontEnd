@@ -7,7 +7,7 @@
         <form [formGroup]="form" (ngSubmit)="aceptar()">
             <mat-form-field *ngIf="edicion">
                 <mat-label>ID</mat-label>
-                <input matInput formControlName="codigo" />
+                <input matInput formControlName="codigo" readonly/>
                 <mat-error *ngIf="form.get('codigo')?.hasError('required')">
                     El Id es Obligatorio para actualizar!!
                 </mat-error>
@@ -62,10 +62,6 @@
                 </mat-radio-group>
             </div>
             <br>
-<<<<<<< HEAD
-
-=======
->>>>>>> 60486da0800bb2fbd576ab5ff825c3564c23271c
             <mat-form-field>
                 <mat-label>Rol</mat-label>
                 <mat-select formControlName="ro">
@@ -77,10 +73,6 @@
                     El Rol es obligatorio!!
                 </mat-error>
             </mat-form-field>
-<<<<<<< HEAD
-            
-=======
->>>>>>> 60486da0800bb2fbd576ab5ff825c3564c23271c
             <br>
             <mat-form-field>
                 <mat-label>Calificacion</mat-label>
@@ -97,8 +89,4 @@
             <button matButton="filled">Registrar</button>
             <button matButton="filled" (click)="cancelar()">Cancelar</button>
         </form>
-<<<<<<< HEAD
     </div>
-=======
-    </div>
->>>>>>> 60486da0800bb2fbd576ab5ff825c3564c23271c

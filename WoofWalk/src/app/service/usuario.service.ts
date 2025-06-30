@@ -44,4 +44,3 @@ export class UsuarioService {
     return this.h.delete(`${this.url + '/eliminar'}/${id}`)
   }
 }
-

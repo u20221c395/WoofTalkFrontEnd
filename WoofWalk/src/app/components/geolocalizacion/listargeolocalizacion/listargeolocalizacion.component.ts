@@ -9,28 +9,28 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 
 @Component({
-    selector: 'app-listargeolocalizacion',
-    imports: [MatTableModule, MatButtonModule, MatIconModule, RouterLink, RouterModule, MatPaginatorModule],
-    templateUrl: './listargeolocalizacion.component.html',
-    styleUrl: './listargeolocalizacion.component.css'
+  selector: 'app-listargeolocalizacion',
+  imports: [MatTableModule, MatButtonModule, MatIconModule, RouterLink, RouterModule, MatPaginatorModule],
+  templateUrl: './listargeolocalizacion.component.html',
+  styleUrl: './listargeolocalizacion.component.css'
 })
-export class ListargeolocalizacionComponent  implements OnInit{
-  displayedColumns: string[] = ['c1', 'c2', 'c3', 'c4','c5', 'c6', 'c7'];
+export class ListargeolocalizacionComponent implements OnInit {
+  displayedColumns: string[] = ['c1', 'c2', 'c3', 'c4', 'c5', 'c8', 'c6', 'c7'];
 
-  dataSource:MatTableDataSource<Geolocalizacion>=new MatTableDataSource()
+  dataSource: MatTableDataSource<Geolocalizacion> = new MatTableDataSource()
 
-  constructor(private geoS:GeolocalizacionService, private roter: Router) { }
+  constructor(private geoS: GeolocalizacionService, private roter: Router) { }
 
   ngOnInit(): void {
-      this.geoS.list().subscribe(data=>{
-        this.dataSource=new MatTableDataSource(data)
-      })
+    this.geoS.list().subscribe(data => {
+      this.dataSource = new MatTableDataSource(data)
+    })
 
-          //Para refrescar la pagina automaticamente cada vez que se registre o actualize
-      this.geoS.getList().subscribe(data=>{
-        this.dataSource=new MatTableDataSource(data)
-      })
-    }
+    //Para refrescar la pagina automaticamente cada vez que se registre o actualize
+    this.geoS.getList().subscribe(data => {
+      this.dataSource = new MatTableDataSource(data)
+    })
+  }
 
   eliminar(id: number) {
     this.geoS.deleteC(id).subscribe(data => {
@@ -40,10 +40,17 @@ export class ListargeolocalizacionComponent  implements OnInit{
     })
   }
 
-    regresar() {
+  regresar() {
     this.roter.navigateByUrl('menu');
   }
   nuevo() {
     this.roter.navigateByUrl('geolocalizacion/nuevo');
+  }
+
+  getStaticMapUrl(lat: number, lng: number): string {
+    const apiKey = 'AIzaSyB_UF5ebwByl-uGccbUFzv6kYSAJ2DQ3PU'; // Clave real
+    const zoom = 12;             // Ajusta este valor para alejar el mapa
+    const size = '600x300';      // Tamaño más grande y claro
+    return `https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lng}&zoom=${zoom}&size=${size}&markers=color:red%7C${lat},${lng}&key=${apiKey}`;
   }
 }

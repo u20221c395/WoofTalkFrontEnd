@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
     styleUrl: './listarcontrato.component.css'
 })
 export class ListarcontratoComponent implements OnInit{
-  displayedColumns: string[] = ['c1', 'c2', 'c3','c6','c7'];
+  displayedColumns: string[] = ['c1', 'c2', 'c3', 'c4', 'c5', 'c6','c7'];
 
   dataSource:MatTableDataSource<Contrato>=new MatTableDataSource()
 

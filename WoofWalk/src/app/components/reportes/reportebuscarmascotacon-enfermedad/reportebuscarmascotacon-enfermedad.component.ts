@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { EnfermedadService } from '../../../service/enfermedad.service';
 import { FormsModule } from '@angular/forms';
-import { BuscarPorMascota } from '../../../model/buscarporMascota';
 import { CommonModule } from '@angular/common';
+import { BuscarPorMascota } from '../../../model/BuscarPorMascota';
 
 @Component({
   selector: 'app-reportebuscarmascotacon-enfermedad',
