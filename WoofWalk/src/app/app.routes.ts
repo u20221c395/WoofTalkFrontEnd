@@ -32,10 +32,17 @@ import { ReportecantidadrolusuariosComponent } from './components/reportes/repor
 import { ServicioComponent } from './components/home/servicio/servicio.component';
 import { ReportetamaniomascotaComponent } from './components/reportes/reportetamaniomascota/reportetamaniomascota.component';
 import { ReporterazasmascotasComponent } from './components/reportes/reporterazasmascotas/reporterazasmascotas.component';
+import { LoginComponent } from './components/login/login.component';
+import { seguridadGuard } from './guard/seguridad.guard';
+import { RecomendacionesComponent } from './components/recomendaciones/recomendaciones.component';
 
 export const routes: Routes = [
     {
-        path: '', redirectTo: 'home', pathMatch: 'full'
+        path: '', redirectTo: 'login', pathMatch: 'full'
+    },
+    {
+        path: 'login',
+        component: LoginComponent,
     },
     {
         path: 'calificaciones',
@@ -47,7 +54,7 @@ export const routes: Routes = [
             {
                 path: 'ediciones/:id', component: InsertareditarComponent
             }
-        ]
+        ], canActivate: [seguridadGuard],
     },
     {
         path: 'climas',
@@ -59,7 +66,7 @@ export const routes: Routes = [
             {
                 path: 'ediciones/:id', component: InsertareditarclimaComponent
             }
-        ]
+        ], canActivate: [seguridadGuard],
     },
     {
         path: 'enfermedades',
@@ -71,7 +78,7 @@ export const routes: Routes = [
             {
                 path: 'ediciones/:id', component: InsertareditarenfermComponent
             }
-        ]
+        ], canActivate: [seguridadGuard],
     },
 
     {
@@ -84,7 +91,7 @@ export const routes: Routes = [
             {
                 path: 'ediciones/:id', component: InsertareditarMetodoPagoComponent
             }
-        ]
+        ], canActivate: [seguridadGuard],
     },
     {
         path: 'roles',
@@ -96,7 +103,7 @@ export const routes: Routes = [
             {
                 path: 'ediciones/:id', component: InsertareditarRolComponent
             }
-        ]
+        ], canActivate: [seguridadGuard],
     },
     {
         path: 'usuarios',
@@ -108,7 +115,7 @@ export const routes: Routes = [
             {
                 path: 'ediciones/:id', component: InseratareditarusuarioComponent
             }
-        ]
+        ], canActivate: [seguridadGuard],
     },
     {
         path: 'geolocalizacion', component: GeolocalizacionComponent,
@@ -119,7 +126,7 @@ export const routes: Routes = [
             {
                 path: 'ediciones/:id', component: InsertareditgeolocalizacionComponent
             }
-        ]
+        ], canActivate: [seguridadGuard],
     },
     {
         path: 'mascota', component: MascotaComponent,
@@ -130,7 +137,7 @@ export const routes: Routes = [
             {
                 path: 'ediciones/:id', component: InsertareditarmascotaComponent
             }
-        ]
+        ], canActivate: [seguridadGuard],
     },
     {
         path: 'paseo',
@@ -142,7 +149,7 @@ export const routes: Routes = [
             {
                 path: 'ediciones/:id', component: InserteditpaseoComponent
             }
-        ]
+        ], canActivate: [seguridadGuard],
     },
     {
         path: 'solicitud',
@@ -154,7 +161,7 @@ export const routes: Routes = [
             {
                 path: 'ediciones/:id', component: InserteditsolicitudComponent
             }
-        ]
+        ], canActivate: [seguridadGuard],
     },
     {
         path: 'contrato',
@@ -166,7 +173,7 @@ export const routes: Routes = [
             {
                 path: 'ediciones/:id', component: InserteditcontratoComponent
             }
-        ]
+        ], canActivate: [seguridadGuard],
     },
     {
         path: 'mascotaenfermedad',
@@ -178,12 +185,12 @@ export const routes: Routes = [
             {
                 path: 'ediciones/:id', component: InserteditmascenfermComponent
             }
-        ]
+        ], canActivate: [seguridadGuard],
     },
     {
         path: 'menu',
         component: MenuComponent,
-        children: [],
+        children: [], canActivate: [seguridadGuard],
     },
     {
         path: 'home',
@@ -192,7 +199,7 @@ export const routes: Routes = [
             {
                 path: 'servicio', component: ServicioComponent
             }
-        ],
+        ], canActivate: [seguridadGuard],
     },
     {
         path: 'reports',
@@ -216,4 +223,9 @@ export const routes: Routes = [
             }
         ]
     },
+    {
+        path: 'recomendaciones',
+        component: RecomendacionesComponent,
+        canActivate: [seguridadGuard],
+    }
 ];
