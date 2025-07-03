@@ -1,11 +1,12 @@
-<mat-toolbar class="custom-toolbar">
+<mat-toolbar class="custom-toolbar" *ngIf="verificar()">
     <div>
         <button mat-button [routerLink]="['/home']" style="color: white">
             <mat-icon>home</mat-icon>Inicio
         </button>
     </div>
     <div>
-        <button mat-button [matMenuTriggerFor]="menuCalificaciones" class="btn-rojo" style="color: white">
+        <button mat-button [matMenuTriggerFor]="menuCalificaciones" class="btn-rojo" style="color: white"
+            *ngIf="isDeveloper()">
             <mat-icon>book</mat-icon>
             Calificaciones
         </button>
@@ -13,89 +14,111 @@
 
 
     <div>
-        <button mat-button [matMenuTriggerFor]="menuEnfermedades" class="btn-rojo" style="color: white">
+        <button mat-button [matMenuTriggerFor]="menuEnfermedades" class="btn-rojo" style="color: white"
+            *ngIf="isDeveloper()">
             <mat-icon>healing</mat-icon>
             Enfermedades
         </button>
     </div>
 
     <div>
-        <button mat-button [matMenuTriggerFor]="menuClima" class="btn-rojo" style="color: white">
+        <button mat-button [matMenuTriggerFor]="menuClima" class="btn-rojo" style="color: white" *ngIf="isDeveloper()">
             <mat-icon>ac_unit</mat-icon>
             Clima
         </button>
     </div>
 
     <div>
-        <button mat-button [matMenuTriggerFor]="menuMetodoDePago" class="btn-rojo" style="color: white">
+        <button mat-button [matMenuTriggerFor]="menuMetodoDePago" class="btn-rojo" style="color: white"
+            *ngIf="isDeveloper()">
             <mat-icon>money</mat-icon>
             Metodos De Pago
         </button>
     </div>
 
     <div>
-        <button mat-button [matMenuTriggerFor]="menuRol" class="btn-rojo" style="color: white">
+        <button mat-button [matMenuTriggerFor]="menuRol" class="btn-rojo" style="color: white" *ngIf="isDeveloper()">
             <mat-icon>domain</mat-icon>
             Roles
         </button>
     </div>
 
     <div>
-        <button mat-button [matMenuTriggerFor]="matMenuUsuarios" class="btn-rojo" style="color: white">
+        <button mat-button [matMenuTriggerFor]="matMenuUsuarios" class="btn-rojo" style="color: white"
+            *ngIf="isDeveloper()">
             <mat-icon>group</mat-icon>
             Usuarios
         </button>
     </div>
 
     <div>
-        <button mat-button [matMenuTriggerFor]="matMenuMascotas" class="btn-rojo" style="color: white">
+        <button mat-button [matMenuTriggerFor]="matMenuMascotas" class="btn-rojo" style="color: white"
+            *ngIf="isDeveloper()">
             <mat-icon>pets</mat-icon>
             Mascotas
         </button>
     </div>
 
     <div>
-        <button mat-button [matMenuTriggerFor]="MatmenuGeolocalizacion" class="btn-rojo" style="color: white">
+        <button mat-button [matMenuTriggerFor]="MatmenuGeolocalizacion" class="btn-rojo" style="color: white"
+            *ngIf="isDeveloper()">
             <mat-icon>my_location</mat-icon>
             Geolocalizacion
         </button>
     </div>
 
     <div>
-        <button mat-button [matMenuTriggerFor]="MatmenuSolicitud" class="btn-rojo" style="color: white">
+        <button mat-button [matMenuTriggerFor]="MatmenuSolicitud" class="btn-rojo" style="color: white"
+            *ngIf="isDeveloper()">
             <mat-icon>assignment</mat-icon>
             Solicitud
         </button>
     </div>
 
     <div>
-        <button mat-button [matMenuTriggerFor]="MatmenuPaseo" class="btn-rojo" style="color: white">
+        <button mat-button [matMenuTriggerFor]="MatmenuPaseo" class="btn-rojo" style="color: white"
+            *ngIf="isDeveloper()">
             <mat-icon>map</mat-icon>
             Paseo
         </button>
     </div>
 
     <div>
-        <button mat-button [matMenuTriggerFor]="MatmenuContrato" class="btn-rojo" style="color: white">
+        <button mat-button [matMenuTriggerFor]="MatmenuContrato" class="btn-rojo" style="color: white"
+            *ngIf="isDeveloper()">
             <mat-icon>description</mat-icon>
             Contrato
         </button>
     </div>
 
     <div>
-        <button mat-button [matMenuTriggerFor]="MatmenuMascotaEnfermedad" class="btn-rojo" style="color: white">
+        <button mat-button [matMenuTriggerFor]="MatmenuMascotaEnfermedad" class="btn-rojo" style="color: white"
+            *ngIf="isDeveloper()">
             <mat-icon>medication</mat-icon>
             MascotaEnfermedad
         </button>
     </div>
 
     <div>
-        <button mat-button [matMenuTriggerFor]="MatmenuReportes" class="btn-rojo" style="color: white">
+        <button mat-button [matMenuTriggerFor]="MatmenuReportes" class="btn-rojo" style="color: white"
+            *ngIf="isDeveloper()">
             <mat-icon>file_copy</mat-icon>
             Reportes
         </button>
     </div>
-
+    <div>
+        <button mat-button [matMenuTriggerFor]="MatmenuRecomendaciones" class="btn-rojo" style="color: white"
+            *ngIf="isDeveloper()">
+            <mat-icon>smart_toy</mat-icon>
+            Gemini
+        </button>
+    </div>
+    <span class="toolbar-spacer"></span>
+    <div class="right-menu">
+        <button mat-button [matMenuTriggerFor]="menuSalir">
+            <mat-icon>person</mat-icon>Usuario
+        </button>
+    </div>
 </mat-toolbar>
 
 <mat-menu #menuCalificaciones="matMenu">
@@ -161,8 +184,23 @@
 <mat-menu #MatmenuReportes="matMenu">
     <button mat-menu-item routerLink="/reports">Mascotas por Dueño</button>
     <button mat-menu-item routerLink="/reports/mascotaconedad10">Mascota mayor de 10 años</button>
-    <button mat-menu-item routerLink="/reports/listarCantidadDeUsuariosRegistrados">Cantidad de Usuarios registrados</button>
+    <button mat-menu-item routerLink="/reports/listarCantidadDeUsuariosRegistrados">Cantidad de Usuarios
+        registrados</button>
     <button mat-menu-item routerLink="/reports/buscarmascotaPorEnfermedad">Buscar Mascotas con enfermedad</button>
     <button mat-menu-item routerLink="/reports/razamascota">Mascota por raza</button>
     <button mat-menu-item routerLink="/reports/tamaniomascota">Mascota por tamaño</button>
+</mat-menu>
+<mat-menu #MatmenuRecomendaciones="matMenu">
+    <button mat-menu-item routerLink="/recomendaciones">Consultar</button>
+</mat-menu>
+
+<mat-menu #menuSalir="matMenu">
+    <button mat-menu-item routerLink="/login" (click)="cerrar()">
+        <mat-icon>logout</mat-icon>
+        <span>Cerrar sesión</span>
+    </button>
+    <button mat-menu-item>
+        Rol:
+        <span>{{ role }}</span>
+    </button>
 </mat-menu>

@@ -5,6 +5,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
+import { LoginService } from '../../service/login.service';
 
 @Component({
   selector: 'app-menu',
@@ -28,4 +29,21 @@ export class MenuComponent {
     'avatar6.jpg',
     'avatar7.jpg',
   ];
+  role: string = '';
+  constructor(private loginService: LoginService) { }
+  cerrar() {
+
+    sessionStorage.clear();
+  }
+  verificar() {
+    this.role = this.loginService.showRole();
+    return this.loginService.verificar();
+  }
+  isDeveloper() {
+    return this.role === 'ROL';
+  }
+
+  isTester() {
+    return this.role === 'TESTER';
+  }
 }
